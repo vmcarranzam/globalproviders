@@ -1,26 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Global Providers</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <!-- Map Container -->
-    <div id="map-container">
-        <object
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Global Providers Map</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Playfair+Display:ital,wght@0,800;1,800&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+    <!-- Header Container -->
+    <header class="header-container">
+        <img src="banner.png" alt="banner del site" class="img-header">
+        <h1>Global Providers Map</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Map Container -->
+        <div class="map-container">
+            <object
             type="image/svg+xml"
             data="world_with_name_attribute_updated.svg"
             width="100%"
             height="100%"
         ></object>
-    </div>
-
-    <!-- Header -->
-    <header>
-        <h1>Global Providers</h1>
-    </header>
+            <div class="zoom-controls">
+                <button id="zoomIn">+</button>
+                <button id="zoomOut">-</button>
+            </div>
+        </div>
 
         <!-- Entity Card Container (initially hidden on mobile) -->
         <aside class="entity-card">
@@ -36,15 +47,14 @@
                 <button id="nextProvider" class="nav-button">Siguiente</button>
             </div>
         </aside>
+    </div>
 
-    <!-- Footer -->
-    <footer>
-        <p>© 2024 Global Providers</p>
+    <!-- Footer Container -->
+    <img src="footer.png" alt="imagen del pie de la página" class="img-footer">
+    <footer class="footer-container">
+        <p class="p-footer">&copy; 2024 Global Providers. All rights reserved.</p>
     </footer>
 
     <script src="script.js"></script>
 </body>
 </html>
-
-
-
