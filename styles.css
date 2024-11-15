@@ -92,6 +92,7 @@ svg {
     z-index: 10; /* Ensure it overlays the map */
     text-align: left;
     transition: all 0.3s ease;
+    display: block; /* Visible by default */
 }
 
 .entity-card h2 {
@@ -112,6 +113,7 @@ svg {
     margin: 10px 0;
 }
 
+/* Navigation buttons inside the entity card */
 .nav-button {
     width: 100px;
     padding: 5px;
@@ -129,6 +131,38 @@ svg {
     background-color: #22543d;
 }
 
+/* Close button */
+.nav-button#closeButton {
+    background-color: #ff4d4d;
+    display: none; /* Hidden by default */
+}
+
+.nav-button#closeButton:hover {
+    background-color: #cc0000;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .entity-card {
+        display: none; /* Hidden by default on mobile */
+    }
+
+    .entity-card.show {
+        display: block; /* Make visible when .show is added */
+    }
+
+    #closeButton {
+        display: block; /* Show close button only on mobile */
+    }
+}
+
+/* Always hide the Close button for larger screens */
+@media (min-width: 769px) {
+    #closeButton {
+        display: none;
+    }
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .entity-card {
@@ -137,41 +171,15 @@ svg {
     }
 }
 
-
+/* Country hover and click styles */
 svg path {
     fill: #2b9643; /* Default fill color for countries */
     transition: fill 0.3s ease; /* Smooth transition */
     stroke: #ffffff;
-
 }
 
 /* Hover effect */
 svg path:hover {
-    fill: #1f6447; /* Change to blue on hover */
+    fill: #1f6447; /* Change color on hover */
     cursor: pointer;
-    stroke: #ffffff;
-
-}
-
-
-
-/* Mobile adjustments */
-@media (max-width: 768px) {
-    .entity-card {
-        display: none; /* Initially hidden */
-    }
-
-    .entity-card.show {
-        display: block; /* Visible when a country is clicked */
-    }
-
-    #closeButton {
-        display: block; /* Show close button only on mobile */
-    }
-}
-
-@media (min-width: 769px) {
-    #closeButton {
-        display: none; /* Hide close button on larger screens */
-    }
 }
