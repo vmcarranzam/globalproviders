@@ -136,3 +136,15 @@ svg {
         right: 10px;
     }
 }
+
+
+svg path {
+    fill: #2da81779; /* Default fill color for countries */
+    transition: fill 0.3s ease; /* Smooth transition */
+}
+
+/* Hover effect */
+svg path:hover {
+    fill: #2da817d2; /* Change to blue on hover */
+    cursor: pointer;
+}
