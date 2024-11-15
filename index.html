@@ -13,8 +13,11 @@
     <!-- Header Container -->
     <header class="header-container">
         <img src="banner.png" alt="banner del site" class="img-header">
-        <h1>Global Providers Map</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <h1>Welcome to the Global Prosthetics Map!</h1>
+
+        <p>The purpose of this interactive map is to share information about organizations that provide prosthetic care to access-limited patients around the world. 
+            Click on the map to discover organizations near you and beyond!
+            </p>
     </header>
 
     <!-- Main Container -->
@@ -977,16 +980,14 @@
 
         <!-- Entity Card Container (initially hidden on mobile) -->
         <aside class="entity-card">
-            <div class="entity-card" id="entityCard">
-                <h2 id="providerName">Provider Name</h2>
-                <p><strong>Address:</strong> <span id="providerAddress">Address</span></p>
-                <p><strong>Phone:</strong> <span id="providerPhone">Phone</span></p>
-                <p><strong>Website:</strong> <a id="providerWebsite" href="#" target="_blank">Website</a></p>
-                <p><strong>Service:</strong> <span id="providerService">Service</span></p>
-                <p><strong>Requirements:</strong> <span id="providerRequirements">Requirements</span></p>
-                <!-- Navigation buttons for provider info -->
-                <button id="prevProvider" class="nav-button">Anterior</button>
-                <button id="nextProvider" class="nav-button">Siguiente</button>
+            <div class="entity-card" id="entityCard" style="display: none;">
+                <button id="closeButton" class="nav-button" style="display: none;">Close</button>
+                <h2 id="providerName">Click or tap on a country to see its registered providers</h2>
+                <p id="providerAddress"></p>
+                <p id="providerPhone"></p>
+                <a id="providerWebsite" href="#" target="_blank"></a>
+                <p id="providerService"></p>
+                <p id="providerRequirements"></p>
             </div>
         </aside>
     </div>

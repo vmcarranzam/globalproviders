@@ -1,23 +1,15 @@
 document.addEventListener("DOMContentLoaded", function () {
     const mapContainer = document.querySelector(".map-container");
     const svg = document.getElementById("interactiveMap");
-    const zoomInButton = document.getElementById("zoomIn");
-    const zoomOutButton = document.getElementById("zoomOut");
+    const entityCard = document.getElementById("entityCard");
+    const closeButton = document.getElementById("closeButton");
     const providerName = document.getElementById("providerName");
     const providerAddress = document.getElementById("providerAddress");
     const providerPhone = document.getElementById("providerPhone");
     const providerWebsite = document.getElementById("providerWebsite");
     const providerService = document.getElementById("providerService");
     const providerRequirements = document.getElementById("providerRequirements");
-    const prevProvider = document.getElementById("prevProvider");
-    const nextProvider = document.getElementById("nextProvider");
 
-    let isPanning = false;
-    let startX, startY;
-    let translateX = 0;
-    let translateY = 0;
-    let zoomLevel = 1;
-    let initialDistance = null;
     let providers = [];
     let filteredProviders = [];
     let currentIndex = 0;
@@ -28,63 +20,54 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(data => {
             providers = data;
             filteredProviders = providers; // Initially display all
-            displayProvider(currentIndex);
+            resetEntityCard(); // Show the default message
         })
         .catch(error => console.error("Error loading providers:", error));
 
+    // Reset the entity card to the default state
+    function resetEntityCard() {
+        entityCard.style.display = "block";
+        providerName.textContent = "Click or tap on a country to see its registered providers";
+        providerAddress.textContent = "";
+        providerPhone.textContent = "";
+        providerWebsite.textContent = "";
+        providerService.textContent = "";
+        providerRequirements.textContent = "";
+    }
+
+    // Display provider data for a specific index
     function displayProvider(index) {
         if (filteredProviders.length > 0) {
             const provider = filteredProviders[index];
-            providerName.textContent = provider.name;
-            providerAddress.textContent = provider.address;
-            providerPhone.textContent = provider.phone;
-            providerWebsite.textContent = provider.website;
-            providerWebsite.href = provider.website.startsWith("http") ? provider.website : `https://${provider.website}`;
-            providerService.textContent = provider.service;
-            providerRequirements.textContent = provider.requirements;
-
-            adjustFontSize(providerName);
-            adjustFontSize(providerAddress);
-            adjustFontSize(providerPhone);
-            adjustFontSize(providerService);
-            adjustFontSize(providerRequirements);
+            providerName.textContent = provider.name || "Unknown Provider";
+            providerAddress.textContent = provider.address || "No address available";
+            providerPhone.textContent = provider.phone || "No phone number available";
+            providerWebsite.textContent = provider.website || "No website available";
+            providerWebsite.href = provider.website.startsWith("http")
+                ? provider.website
+                : `https://${provider.website}`;
+            providerService.textContent = provider.service || "No service information available";
+            providerRequirements.textContent = provider.requirements || "No requirements available";
         } else {
-            providerName.textContent = "No providers found";
-            providerAddress.textContent = "";
-            providerPhone.textContent = "";
-            providerWebsite.textContent = "";
-            providerService.textContent = "";
-            providerRequirements.textContent = "";
+            resetEntityCard();
         }
     }
 
-    function adjustFontSize(element) {
-        let fontSize = parseInt(window.getComputedStyle(element).fontSize);
-        while (element.scrollHeight > element.clientHeight && fontSize > 10) {
-            fontSize -= 1;
-            element.style.fontSize = fontSize + "px";
-        }
-    }
-
-    prevProvider.addEventListener("click", () => {
-        currentIndex = (currentIndex > 0) ? currentIndex - 1 : filteredProviders.length - 1;
-        displayProvider(currentIndex);
-    });
-
-    nextProvider.addEventListener("click", () => {
-        currentIndex = (currentIndex < filteredProviders.length - 1) ? currentIndex + 1 : 0;
-        displayProvider(currentIndex);
-    });
-
+    // Filter providers based on the selected country
     function filterProvidersByCountry(countryName) {
         filteredProviders = providers.filter(provider =>
             provider.country.split(", ").some(country => country.trim() === countryName)
         );
         currentIndex = 0;
         displayProvider(currentIndex);
+
+        // Show the card on mobile
+        if (window.innerWidth <= 768) {
+            entityCard.classList.add("show");
+        }
     }
 
-    // Add click event listeners to countries using the 'name' attribute
+    // Add click event listeners to all countries in the SVG map
     svg.querySelectorAll("[name]").forEach(country => {
         country.addEventListener("click", (event) => {
             const countryName = event.target.getAttribute("name");
@@ -92,15 +75,30 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    mapContainer.addEventListener("wheel", function (event) {
-        event.preventDefault();
-        adjustZoom(event.deltaY < 0 ? 0.1 : -0.1);
+    // Close the entity card on mobile
+    closeButton.addEventListener("click", () => {
+        if (window.innerWidth <= 768) {
+            entityCard.classList.remove("show");
+        }
     });
 
-    function adjustZoom(delta) {
-        zoomLevel = Math.min(Math.max(zoomLevel + delta, 0.5), 3);
-        svg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${zoomLevel})`;
-    }
+    // Handle window resize events to adjust card visibility
+    window.addEventListener("resize", () => {
+        if (window.innerWidth > 768) {
+            entityCard.style.display = "block"; // Always visible on larger screens
+            closeButton.style.display = "none"; // Hide close button
+        } else {
+            entityCard.style.display = "none"; // Hidden by default on mobile
+            closeButton.style.display = "block"; // Show close button on mobile
+        }
+    });
+
+    // Enable panning and zooming for the map
+    let isPanning = false;
+    let startX, startY;
+    let translateX = 0;
+    let translateY = 0;
+    let zoomLevel = 1;
 
     svg.addEventListener("mousedown", function (event) {
         isPanning = true;
@@ -121,30 +119,16 @@ document.addEventListener("DOMContentLoaded", function () {
         svg.style.cursor = "grab";
     });
 
-    mapContainer.addEventListener("touchstart", function (event) {
-        if (event.touches.length === 2) {
-            initialDistance = getDistance(event.touches[0], event.touches[1]);
-        }
+    mapContainer.addEventListener("wheel", function (event) {
+        event.preventDefault();
+        adjustZoom(event.deltaY < 0 ? 0.1 : -0.1);
     });
 
-    mapContainer.addEventListener("touchmove", function (event) {
-        if (event.touches.length === 2 && initialDistance) {
-            event.preventDefault();
-            const newDistance = getDistance(event.touches[0], event.touches[1]);
-            const delta = (newDistance - initialDistance) * 0.005;
-            adjustZoom(delta);
-            initialDistance = newDistance;
-        }
-    });
-
-    mapContainer.addEventListener("touchend", function () {
-        initialDistance = null;
-    });
-
-    function getDistance(touch1, touch2) {
-        return Math.sqrt(
-            Math.pow(touch2.clientX - touch1.clientX, 2) +
-            Math.pow(touch2.clientY - touch1.clientY, 2)
-        );
+    function adjustZoom(delta) {
+        zoomLevel = Math.min(Math.max(zoomLevel + delta, 0.5), 3);
+        svg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${zoomLevel})`;
     }
+
+    // Ensure the card visibility is set correctly on page load
+    window.dispatchEvent(new Event("resize"));
 });
