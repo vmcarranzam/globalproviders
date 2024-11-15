@@ -9,10 +9,20 @@ document.addEventListener("DOMContentLoaded", function () {
     const providerWebsite = document.getElementById("providerWebsite");
     const providerService = document.getElementById("providerService");
     const providerRequirements = document.getElementById("providerRequirements");
+    const prevProvider = document.createElement("button");
+    const nextProvider = document.createElement("button");
 
     let providers = [];
     let filteredProviders = [];
     let currentIndex = 0;
+
+    // Add navigation buttons
+    prevProvider.textContent = "Prev";
+    nextProvider.textContent = "Next";
+    prevProvider.classList.add("nav-button");
+    nextProvider.classList.add("nav-button");
+    entityCard.appendChild(prevProvider);
+    entityCard.appendChild(nextProvider);
 
     // Load providers data
     fetch("providers.json")
@@ -33,6 +43,8 @@ document.addEventListener("DOMContentLoaded", function () {
         providerWebsite.textContent = "";
         providerService.textContent = "";
         providerRequirements.textContent = "";
+        prevProvider.style.display = "none";
+        nextProvider.style.display = "none";
     }
 
     // Display provider data for a specific index
@@ -48,6 +60,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 : `https://${provider.website}`;
             providerService.textContent = provider.service || "No service information available";
             providerRequirements.textContent = provider.requirements || "No requirements available";
+
+            // Show navigation buttons if multiple providers are available
+            prevProvider.style.display = filteredProviders.length > 1 ? "inline-block" : "none";
+            nextProvider.style.display = filteredProviders.length > 1 ? "inline-block" : "none";
         } else {
             resetEntityCard();
         }
@@ -73,6 +89,17 @@ document.addEventListener("DOMContentLoaded", function () {
             const countryName = event.target.getAttribute("name");
             filterProvidersByCountry(countryName);
         });
+    });
+
+    // Navigation button functionality
+    prevProvider.addEventListener("click", () => {
+        currentIndex = (currentIndex > 0) ? currentIndex - 1 : filteredProviders.length - 1;
+        displayProvider(currentIndex);
+    });
+
+    nextProvider.addEventListener("click", () => {
+        currentIndex = (currentIndex < filteredProviders.length - 1) ? currentIndex + 1 : 0;
+        displayProvider(currentIndex);
     });
 
     // Close the entity card on mobile
