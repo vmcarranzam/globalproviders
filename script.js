@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     const mapContainer = document.querySelector(".map-container");
     const svg = document.getElementById("interactiveMap");
     const zoomInButton = document.getElementById("zoomIn");
@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    mapContainer.addEventListener("wheel", function(event) {
+    mapContainer.addEventListener("wheel", function (event) {
         event.preventDefault();
         adjustZoom(event.deltaY < 0 ? 0.1 : -0.1);
     });
@@ -102,32 +102,32 @@ document.addEventListener("DOMContentLoaded", function() {
         svg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${zoomLevel})`;
     }
 
-    svg.addEventListener("mousedown", function(event) {
+    svg.addEventListener("mousedown", function (event) {
         isPanning = true;
         startX = event.clientX - translateX;
         startY = event.clientY - translateY;
         svg.style.cursor = "grabbing";
     });
 
-    document.addEventListener("mousemove", function(event) {
+    document.addEventListener("mousemove", function (event) {
         if (!isPanning) return;
         translateX = event.clientX - startX;
         translateY = event.clientY - startY;
         svg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${zoomLevel})`;
     });
 
-    document.addEventListener("mouseup", function() {
+    document.addEventListener("mouseup", function () {
         isPanning = false;
         svg.style.cursor = "grab";
     });
 
-    mapContainer.addEventListener("touchstart", function(event) {
+    mapContainer.addEventListener("touchstart", function (event) {
         if (event.touches.length === 2) {
             initialDistance = getDistance(event.touches[0], event.touches[1]);
         }
     });
 
-    mapContainer.addEventListener("touchmove", function(event) {
+    mapContainer.addEventListener("touchmove", function (event) {
         if (event.touches.length === 2 && initialDistance) {
             event.preventDefault();
             const newDistance = getDistance(event.touches[0], event.touches[1]);
@@ -137,7 +137,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    mapContainer.addEventListener("touchend", function() {
+    mapContainer.addEventListener("touchend", function () {
         initialDistance = null;
     });
 
