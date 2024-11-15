@@ -27,16 +27,16 @@ body {
 
 .header-container h1 {
     position: absolute;
-    margin-top: -14.5%;
-    margin-left: 10%;
+    margin-top: -15%;
+    margin-left: 7%;
     font-family: 'Playfair Display';
     font-weight: 800;
 }
 
 .header-container p {
     position: inherit;
-    margin-left: 10%;
-    margin-top: -10%;
+    margin-left: 7%;
+    margin-top: -12%;
     margin-bottom: 7%;
 }
 
@@ -45,9 +45,22 @@ svg {
     outline: none;
 }
 
+/* Country hover and click styles */
+svg path {
+    fill: rgb(137, 205, 126); /* Default fill color for countries */
+    transition: fill 0.3s ease; /* Smooth transition */
+    stroke: #ffffff;
+}
+
+/* Hover effect */
+svg path:hover {
+    fill: #1f6447; /* Change color on hover */
+    cursor: pointer;
+}
+
 .map-container {
     width: 100%;
-    height: 80vh; /* Adjust height as needed */
+    height: 99%; /* Adjust height as needed */
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -141,10 +154,57 @@ svg {
     background-color: #cc0000;
 }
 
+.img-footer{
+    width: 100%;
+    height: 10%;
+    margin-top: 1%;
+}
+
+.p-footer{
+    color: #22543d;
+    text-align: center;
+    font-size: 1rem;
+
+}
+
+/* Zoom controls positioned at the bottom left */
+.zoom-controls {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    left: 2%;
+    top: 80%;
+}
+
+.zoom-controls button {
+    width: 40px;
+    height: 40px;
+    margin: 5px 0;
+    font-size: 1.5rem;
+    background-color: #e0e2e2;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.zoom-controls button:hover {
+    background-color: #22543d;
+    color: white;
+}
+
 /* Mobile adjustments */
-@media (max-width: 768px) {
+
+@media (max-width: 480px){
+    
+}
+
+@media (min-width: 768px) and (max-width: 1024px){
     .entity-card {
         display: none; /* Hidden by default on mobile */
+        width: 80%;
+        right: 10px;
     }
 
     .entity-card.show {
@@ -156,30 +216,8 @@ svg {
     }
 }
 
-/* Always hide the Close button for larger screens */
-@media (min-width: 769px) {
+@media (min-width: 1025px) {
     #closeButton {
         display: none;
     }
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .entity-card {
-        width: 80%;
-        right: 10px;
-    }
-}
-
-/* Country hover and click styles */
-svg path {
-    fill: #2b9643; /* Default fill color for countries */
-    transition: fill 0.3s ease; /* Smooth transition */
-    stroke: #ffffff;
-}
-
-/* Hover effect */
-svg path:hover {
-    fill: #1f6447; /* Change color on hover */
-    cursor: pointer;
 }
