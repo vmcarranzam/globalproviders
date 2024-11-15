@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(response => response.json())
         .then(data => {
             providers = data;
-            filteredProviders = providers; // Inicialmente muestra todos
+            filteredProviders = providers; // Initially display all
             displayProvider(currentIndex);
         })
         .catch(error => console.error("Error loading providers:", error));
@@ -84,22 +84,11 @@ document.addEventListener("DOMContentLoaded", function() {
         displayProvider(currentIndex);
     }
 
-    // Add click and hover event listeners to countries using the 'name' attribute
+    // Add click event listeners to countries using the 'name' attribute
     svg.querySelectorAll("[name]").forEach(country => {
         country.addEventListener("click", (event) => {
             const countryName = event.target.getAttribute("name");
             filterProvidersByCountry(countryName);
-        });
-
-        // Change color on hover
-        country.addEventListener("mouseenter", (event) => {
-            event.target.style.fill = "#5a9bd3";
-            event.target.style.cursor = "pointer";  // Change cursor to pointer on hover
-        });
-
-        country.addEventListener("mouseleave", (event) => {
-            event.target.style.fill = "#a0c4ff";  // Revert to original color on mouse leave
-            event.target.style.cursor = "grab";    // Revert cursor to grab
         });
     });
 
