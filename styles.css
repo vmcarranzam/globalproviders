@@ -139,7 +139,7 @@ svg {
 
 
 svg path {
-    fill: #1f6447; /* Default fill color for countries */
+    fill: #2b9643; /* Default fill color for countries */
     transition: fill 0.3s ease; /* Smooth transition */
     stroke: #ffffff;
 
@@ -147,7 +147,7 @@ svg path {
 
 /* Hover effect */
 svg path:hover {
-    fill: #2b9643; /* Change to blue on hover */
+    fill: #1f6447; /* Change to blue on hover */
     cursor: pointer;
     stroke: #ffffff;
 
