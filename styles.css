@@ -66,14 +66,14 @@ svg {
 }
 
 /* Country styles */
-.country {
+.svg path {
     fill: #2b9643; /* Default color */
     stroke: #2d6a4f;
     stroke-width: 0.5;
     transition: fill 0.3s ease;
 }
 
-.country:hover {
+.svg path:hover {
     fill: #1f6447; /* Hover color */
     cursor: pointer; /* Show pointer cursor */
 }
@@ -138,13 +138,3 @@ svg {
 }
 
 
-svg path {
-    fill: #2da81779; /* Default fill color for countries */
-    transition: fill 0.3s ease; /* Smooth transition */
-}
-
-/* Hover effect */
-svg path:hover {
-    fill: #2da817d2; /* Change to blue on hover */
-    cursor: pointer;
-}
