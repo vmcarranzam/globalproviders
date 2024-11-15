@@ -66,7 +66,7 @@ svg {
 }
 
 /* Country styles */
-.country {
+.name {
     fill: #2b9643; /* Default country color */
     stroke: #2d6a4f;
     stroke-width: 0.5;
