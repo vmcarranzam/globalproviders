@@ -66,17 +66,16 @@ svg {
 }
 
 /* Country styles */
-/* Country styles */
 .country {
-    fill: #2b9643; /* Default country color */
+    fill: #2b9643; /* Default color */
     stroke: #2d6a4f;
     stroke-width: 0.5;
     transition: fill 0.3s ease;
 }
 
 .country:hover {
-    fill: #1f6447; /* Color on hover */
-    cursor: pointer; /* Change cursor on hover */
+    fill: #1f6447; /* Hover color */
+    cursor: pointer; /* Show pointer cursor */
 }
 
 /* Fixed position entity card on the right */
