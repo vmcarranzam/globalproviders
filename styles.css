@@ -343,7 +343,7 @@ svg path:hover {
     }
 
     .entity-card.show {
-        display: none; /* Make visible when .show is added */
+        display: flex; /* Make visible when .show is added */
     }
 
     .zoom-controls{
@@ -409,3 +409,13 @@ svg path:hover {
     overflow-y: auto;
     padding: 20px;
 }
+
+
+
+
+
+
+
+
+
+
