@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(data => {
             providers = data;
             resetEntityCard(); // Show the "Start" message
+            highlightCountriesWithProviders(data); // Highlight countries with providers
         })
         .catch(error => console.error("Error loading providers:", error));
 
@@ -84,6 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
         country.addEventListener("click", (event) => {
             const countryName = event.target.getAttribute("name");
             filterProvidersByCountry(countryName);
+            showEntityCard(); // Show the card on click
         });
     });
 
@@ -152,36 +154,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Ensure the card visibility is set correctly on page load
     window.dispatchEvent(new Event("resize"));
+
+    // Highlight countries with providers
+    function highlightCountriesWithProviders(providers) {
+        const countriesWithProviders = new Set(
+            providers.map(provider => provider.country.trim())
+        );
+
+        svg.querySelectorAll("[name]").forEach(country => {
+            const countryName = country.getAttribute("name").trim();
+            if (countriesWithProviders.has(countryName)) {
+                country.classList.add("has-provider");
+            }
+        });
+    }
 });
 
-
-
-
-
-
-
-
-
-function highlightCountriesWithProviders() {
-    const countriesWithProviders = new Set(
-        providers.map(provider => provider.country.trim())
-    );
-
-    svg.querySelectorAll("[name]").forEach(country => {
-        const countryName = country.getAttribute("name").trim();
-        if (countriesWithProviders.has(countryName)) {
-            country.classList.add("has-provider");
-        }
-    });
-}
-
-
+// Mobile specific functionality
 document.addEventListener("DOMContentLoaded", function () {
     const entityCard = document.getElementById("entityCard");
     const closeButton = document.getElementById("closeButton");
     const svg = document.getElementById("interactiveMap");
 
-    // Function to show the entity card
     function showEntityCard() {
         const isMobile = window.innerWidth <= 768;
         if (isMobile) {
@@ -193,7 +187,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Function to hide the entity card
     function hideEntityCard() {
         const isMobile = window.innerWidth <= 768;
         if (isMobile) {
@@ -203,28 +196,19 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Add click event listener to all countries
     svg.querySelectorAll("[name]").forEach(country => {
-        country.addEventListener("click", () => {
-            showEntityCard();
-        });
+        country.addEventListener("click", showEntityCard);
     });
 
-    // Add click event listener to the close button
-    closeButton.addEventListener("click", () => {
-        hideEntityCard();
+    closeButton.addEventListener("click", hideEntityCard);
+
+    window.addEventListener("resize", () => {
+        const isMobile = window.innerWidth <= 768;
+        if (!isMobile) {
+            entityCard.style.display = "flex"; // Visible on desktop
+            entityCard.classList.remove("hidden", "show");
+        } else {
+            entityCard.style.display = "none"; // Hidden on mobile by default
+        }
     });
-});
-
-
-
-
-window.addEventListener("resize", () => {
-    const isMobile = window.innerWidth <= 768;
-    if (!isMobile) {
-        entityCard.style.display = "flex"; // Visible on desktop
-        entityCard.classList.remove("hidden", "show");
-    } else {
-        entityCard.style.display = "none"; // Hidden on mobile by default
-    }
 });
