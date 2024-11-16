@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const providerRequirements = document.getElementById("providerRequirements");
     const prevProvider = document.createElement("button");
     const nextProvider = document.createElement("button");
+    const closeButton = document.getElementById("closeButton");
 
     let providers = [];
     let filteredProviders = [];
@@ -77,6 +78,22 @@ document.addEventListener("DOMContentLoaded", function () {
         );
         currentIndex = 0;
         displayProvider(currentIndex);
+        showEntityCard(); // Show the entity card after filtering
+    }
+
+    // Show the entity card
+    function showEntityCard() {
+        const isMobile = window.innerWidth <= 768;
+        entityCard.classList.add("show");
+        if (isMobile) {
+            closeButton.style.display = "block"; // Show close button for mobile
+        }
+    }
+
+    // Hide the entity card
+    function hideEntityCard() {
+        entityCard.classList.remove("show");
+        closeButton.style.display = "none"; // Hide close button
     }
 
     // Add click event listeners to all countries in the SVG map
@@ -98,9 +115,9 @@ document.addEventListener("DOMContentLoaded", function () {
         displayProvider(currentIndex);
     });
 
-    // Handle the registration button click
-    registerButton.addEventListener("click", () => {
-        alert("Redirecting to registration page..."); // Replace with actual redirection logic
+    // Add click event listener to the close button
+    closeButton.addEventListener("click", () => {
+        hideEntityCard();
     });
 
     // Scrolling Behavior for Entity Card
@@ -149,31 +166,4 @@ document.addEventListener("DOMContentLoaded", function () {
         zoomLevel = Math.min(Math.max(zoomLevel + delta, 0.5), 3);
         svg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${zoomLevel})`;
     }
-
-    // Ensure the card visibility is set correctly on page load
-    window.dispatchEvent(new Event("resize"));
 });
-
-
-
-
-
-
-
-
-
-function highlightCountriesWithProviders() {
-    const countriesWithProviders = new Set(
-        providers.map(provider => provider.country.trim())
-    );
-
-    svg.querySelectorAll("[name]").forEach(country => {
-        const countryName = country.getAttribute("name").trim();
-        if (countriesWithProviders.has(countryName)) {
-            country.classList.add("has-provider");
-        }
-    });
-}
-
-
-
