@@ -80,6 +80,42 @@ document.addEventListener("DOMContentLoaded", function () {
         displayProvider(currentIndex);
     }
 
+    // Highlight countries with providers
+    function highlightCountriesWithProviders(providers) {
+        const countriesWithProviders = new Set(
+            providers.map(provider => provider.country.trim())
+        );
+
+        svg.querySelectorAll("[name]").forEach(country => {
+            const countryName = country.getAttribute("name").trim();
+            if (countriesWithProviders.has(countryName)) {
+                country.classList.add("has-provider");
+            }
+        });
+    }
+
+    // Show the entity card
+    function showEntityCard() {
+        const isMobile = window.innerWidth <= 768;
+        if (isMobile) {
+            entityCard.classList.add("show");
+            entityCard.classList.remove("hidden");
+            closeButton.style.display = "block"; // Show close button for mobile
+        } else {
+            entityCard.style.display = "flex"; // Ensure visible on desktop
+        }
+    }
+
+    // Hide the entity card
+    function hideEntityCard() {
+        const isMobile = window.innerWidth <= 768;
+        if (isMobile) {
+            entityCard.classList.add("hidden");
+            entityCard.classList.remove("show");
+            closeButton.style.display = "none"; // Hide close button for desktop
+        }
+    }
+
     // Add click event listeners to all countries in the SVG map
     svg.querySelectorAll("[name]").forEach(country => {
         country.addEventListener("click", (event) => {
@@ -154,20 +190,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Ensure the card visibility is set correctly on page load
     window.dispatchEvent(new Event("resize"));
-
-    // Highlight countries with providers
-    function highlightCountriesWithProviders(providers) {
-        const countriesWithProviders = new Set(
-            providers.map(provider => provider.country.trim())
-        );
-
-        svg.querySelectorAll("[name]").forEach(country => {
-            const countryName = country.getAttribute("name").trim();
-            if (countriesWithProviders.has(countryName)) {
-                country.classList.add("has-provider");
-            }
-        });
-    }
 });
 
 // Mobile specific functionality

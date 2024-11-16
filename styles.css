@@ -171,7 +171,6 @@ svg path:hover {
     font-size: 0.9rem;
     margin-bottom: 10px;
 }
-
 /* Gray line separator */
 .entity-card .separator {
     height: 1px;
@@ -215,6 +214,7 @@ svg path:hover {
 .nav-button:hover {
     background-color: #22543d;
 }
+
 /* Close button */
 .nav-button#closeButton {
     background-color: #ff4d4d;
@@ -228,17 +228,16 @@ svg path:hover {
     background-color: #cc0000;
 }
 
-.img-footer{
+.img-footer {
     width: 100%;
     height: 10%;
     margin-top: 1%;
 }
 
-.p-footer{
+.p-footer {
     color: #22543d;
     text-align: center;
     font-size: 1rem;
-
 }
 
 /* Zoom controls positioned at the bottom left */
@@ -269,30 +268,29 @@ svg path:hover {
 }
 
 /* Mobile adjustments */
-
-@media (max-width: 480px){
-    .img-header{
+@media (max-width: 768px) {
+    .img-header {
         content: url(banner-responsive.png);
         width: 100%;
         height: 50%;
     }
 
-    .header-container h1{
+    .header-container h1 {
         margin-top: -68%;
         font-size: 1.5rem;
     }
 
-    .header-container p{
+    .header-container p {
         margin-top: -47%;
         margin-right: 14%;
         overflow-wrap: break-word;
         font-size: 0.9rem;
     }
 
-    .map-container{
+    .map-container {
         margin-top: 9%;
     }
-    
+
     .entity-card {
         position: fixed;
         bottom: 0;
@@ -302,49 +300,50 @@ svg path:hover {
         height: 50%;
         transform: translateY(100%);
         display: none; /* Hidden by default */
+        transition: transform 0.3s ease-in-out;
     }
 
     .entity-card.show {
+        transform: translateY(0);
         display: flex; /* Show when .show is added */
     }
 
     #closeButton {
         display: inline-block; /* Only show in mobile */
     }
-    .zoom-controls{
+
+    .zoom-controls {
         top: 70%;
     }
 
-    .zoom-controls button{
+    .zoom-controls button {
         width: 30px;
         height: 30px;
         font-size: 1rem;
         text-align: center;
     }
 
-    .img-footer{
+    .img-footer {
         margin-top: 10%;
     }
 
-    .p-footer{
+    .p-footer {
         font-size: 0.5rem;
     }
 
     #closeButton {
         display: none;
     }
-
 }
 
-@media (min-width: 768px) and (max-width: 1024px){
-
-    .header-container h1{
+@media (min-width: 768px) and (max-width: 1024px) {
+    .header-container h1 {
         margin-top: -19%;
         margin-left: 5%;
         font-size: 1.7rem;
     }
 
-    .header-container p{
+    .header-container p {
         margin-left: 5%;
         margin-top: -13%;
         margin-right: 26%;
@@ -356,6 +355,7 @@ svg path:hover {
         padding-top: 20%;
         padding-bottom: 20%;
     }
+
     .entity-card {
         display: none; /* Hidden by default on mobile */
         width: 80%;
@@ -366,7 +366,7 @@ svg path:hover {
         display: flex; /* Make visible when .show is added */
     }
 
-    .zoom-controls{
+    .zoom-controls {
         top: 60%;
     }
 
@@ -380,7 +380,6 @@ svg path:hover {
         display: none;
     }
 }
-
 /* No Organization Message */
 .no-org-message {
     display: flex;
@@ -429,13 +428,50 @@ svg path:hover {
     overflow-y: auto;
     padding: 20px;
 }
+/* Fixed footer with navigation buttons */
+.entity-card .footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #d9d9d9;
+    border-top: 1px solid #c0c0c0;
+    flex-shrink: 0; /* Ensure footer doesn't shrink */
+}
 
+.entity-card h2 {
+    color: #2b9643;
+    font-family: 'Nunito Sans';
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-top: 0;
+    text-align: center;
+}
 
+.entity-card .address {
+    color: black;
+    font-family: 'Nunito Sans';
+    font-weight: 400;
+    font-size: 0.9rem; /* Smaller font size */
+    text-align: center;
+    margin-top: 5px; /* Slight spacing from the name */
+    margin-bottom: 10px;
+}
 
+/* Subtitle styles */
+.entity-card .subtitle {
+    color: #2b9643;
+    font-family: 'Nunito Sans';
+    font-weight: 500;
+    font-size: 1rem;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
 
-
-
-
-
-
-
+/* Section content styles */
+.entity-card .section-content {
+    color: black;
+    font-family: 'Nunito Sans';
+    font-weight: 400;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
