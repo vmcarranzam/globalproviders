@@ -301,6 +301,7 @@ svg path:hover {
         transform: translateY(100%);
         display: none; /* Hidden by default */
         transition: transform 0.3s ease-in-out;
+        z-index: 10;
 
         
     }
