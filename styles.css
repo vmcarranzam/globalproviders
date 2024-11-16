@@ -95,19 +95,26 @@ svg path:hover {
 /* Fixed position entity card on the right */
 .entity-card {
     position: fixed;
-    top: 15%; /* Adjusted for larger height */
-    right: 20px; /* Offset from the right */
-    width: 300px; /* Fixed width */
-    height: 550px; /* Larger height */
-    max-width: 90%; /* Responsive adjustment for smaller screens */
-    max-height: 90%; /* Ensure it remains responsive on smaller screens */
+    top: 15%;
+    right: 20px;
+    width: 300px;
+    height: 550px;
+    max-width: 90%;
+    max-height: 90%;
     border-radius: 10px;
     background-color: #e0e2e2;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    z-index: 10; /* Ensure it overlays the map */
+    z-index: 10;
     display: flex;
     flex-direction: column;
-    overflow: hidden; /* Prevent card overflow */
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.entity-card.hidden {
+    transform: translateY(100%);
+    opacity: 0;
+    pointer-events: none;
 }
 
 /* Scrollable content area */
@@ -211,7 +218,10 @@ svg path:hover {
 /* Close button */
 .nav-button#closeButton {
     background-color: #ff4d4d;
-    display: none; /* Hidden by default */
+    display: none;
+    align-self: flex-end;
+    margin: 10px;
+    padding: 5px 10px;
 }
 
 .nav-button#closeButton:hover {
@@ -283,14 +293,24 @@ svg path:hover {
         margin-top: 9%;
     }
     
-    .entity-card{
-        display: none;
+    .entity-card {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        width: 100%;
+        height: 50%;
+        transform: translateY(100%);
+        display: none; /* Hidden by default */
     }
 
     .entity-card.show {
-        display: none; /* Make visible when .show is added */
+        display: flex; /* Show when .show is added */
     }
 
+    #closeButton {
+        display: inline-block; /* Only show in mobile */
+    }
     .zoom-controls{
         top: 70%;
     }

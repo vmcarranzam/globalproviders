@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const providerRequirements = document.getElementById("providerRequirements");
     const prevProvider = document.createElement("button");
     const nextProvider = document.createElement("button");
-    const closeButton = document.getElementById("closeButton");
 
     let providers = [];
     let filteredProviders = [];
@@ -78,22 +77,6 @@ document.addEventListener("DOMContentLoaded", function () {
         );
         currentIndex = 0;
         displayProvider(currentIndex);
-        showEntityCard(); // Show the entity card after filtering
-    }
-
-    // Show the entity card
-    function showEntityCard() {
-        const isMobile = window.innerWidth <= 768;
-        entityCard.classList.add("show");
-        if (isMobile) {
-            closeButton.style.display = "block"; // Show close button for mobile
-        }
-    }
-
-    // Hide the entity card
-    function hideEntityCard() {
-        entityCard.classList.remove("show");
-        closeButton.style.display = "none"; // Hide close button
     }
 
     // Add click event listeners to all countries in the SVG map
@@ -115,9 +98,9 @@ document.addEventListener("DOMContentLoaded", function () {
         displayProvider(currentIndex);
     });
 
-    // Add click event listener to the close button
-    closeButton.addEventListener("click", () => {
-        hideEntityCard();
+    // Handle the registration button click
+    registerButton.addEventListener("click", () => {
+        alert("Redirecting to registration page..."); // Replace with actual redirection logic
     });
 
     // Scrolling Behavior for Entity Card
@@ -165,5 +148,83 @@ document.addEventListener("DOMContentLoaded", function () {
     function adjustZoom(delta) {
         zoomLevel = Math.min(Math.max(zoomLevel + delta, 0.5), 3);
         svg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${zoomLevel})`;
+    }
+
+    // Ensure the card visibility is set correctly on page load
+    window.dispatchEvent(new Event("resize"));
+});
+
+
+
+
+
+
+
+
+
+function highlightCountriesWithProviders() {
+    const countriesWithProviders = new Set(
+        providers.map(provider => provider.country.trim())
+    );
+
+    svg.querySelectorAll("[name]").forEach(country => {
+        const countryName = country.getAttribute("name").trim();
+        if (countriesWithProviders.has(countryName)) {
+            country.classList.add("has-provider");
+        }
+    });
+}
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const entityCard = document.getElementById("entityCard");
+    const closeButton = document.getElementById("closeButton");
+    const svg = document.getElementById("interactiveMap");
+
+    // Function to show the entity card
+    function showEntityCard() {
+        const isMobile = window.innerWidth <= 768;
+        if (isMobile) {
+            entityCard.classList.add("show");
+            entityCard.classList.remove("hidden");
+            closeButton.style.display = "block"; // Show close button for mobile
+        } else {
+            entityCard.style.display = "flex"; // Ensure visible on desktop
+        }
+    }
+
+    // Function to hide the entity card
+    function hideEntityCard() {
+        const isMobile = window.innerWidth <= 768;
+        if (isMobile) {
+            entityCard.classList.add("hidden");
+            entityCard.classList.remove("show");
+            closeButton.style.display = "none"; // Hide close button for desktop
+        }
+    }
+
+    // Add click event listener to all countries
+    svg.querySelectorAll("[name]").forEach(country => {
+        country.addEventListener("click", () => {
+            showEntityCard();
+        });
+    });
+
+    // Add click event listener to the close button
+    closeButton.addEventListener("click", () => {
+        hideEntityCard();
+    });
+});
+
+
+
+
+window.addEventListener("resize", () => {
+    const isMobile = window.innerWidth <= 768;
+    if (!isMobile) {
+        entityCard.style.display = "flex"; // Visible on desktop
+        entityCard.classList.remove("hidden", "show");
+    } else {
+        entityCard.style.display = "none"; // Hidden on mobile by default
     }
 });
