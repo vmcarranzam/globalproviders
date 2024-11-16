@@ -980,16 +980,44 @@
 
         <!-- Entity Card Container (initially hidden on mobile) -->
         <aside class="entity-card">
-            <div class="entity-card" id="entityCard" style="display: none;">
-                <button id="closeButton" class="nav-button" style="display: none;">Close</button>
-                <h2 id="providerName">Click or tap on a country to see its registered providers</h2>
-                <p id="providerAddress"></p>
-                <p id="providerPhone"></p>
-                <a id="providerWebsite" href="#" target="_blank"></a>
-                <p id="providerService"></p>
-                <p id="providerRequirements"></p>
+            <div id="entityCard" class="entity-card">
+                <!-- Initial Message -->
+                <div id="startMessage" class="start-message" style="display: flex;">
+                    <p class="start-text">Click or tap on any country to begin.</p>
+                </div>
+            
+                <!-- No Organization Message -->
+                <div id="noOrgMessage" class="no-org-message" style="display: none;">
+                    <img src="icon.png" alt="No Organization" class="no-org-icon">
+                    <p class="no-org-text">País sin organización registrada:<br>Aún no tenemos una organización registrada para este país.</p>
+                    <button id="registerButton" class="no-org-button">Regístrala aquí</button>
+                </div>
+            
+                <!-- Provider Content -->
+                <div id="cardContent" class="content" style="display: none;">
+                    <h2 id="providerName">Provider Name</h2>
+                    <p id="providerAddress" class="address">Address</p>
+                    <div class="separator"></div>
+                    <p class="subtitle">Phone Number</p>
+                    <p id="providerPhone" class="section-content">123-456-7890</p>
+                    <div class="separator"></div>
+                    <p class="subtitle">Country/Countries Served</p>
+                    <p id="providerCountry" class="section-content">Country</p>
+                    <div class="separator"></div>
+                    <p class="subtitle">Website</p>
+                    <p id="providerWebsite" class="section-content">
+                        <a href="https://example.com" target="_blank">https://example.com</a>
+                    </p>
+                    <div class="separator"></div>
+                    <p class="subtitle">Services Provided</p>
+                    <p id="providerService" class="section-content">Service information</p>
+                    <div class="separator"></div>
+                    <p class="subtitle">Requirements to Receive Services</p>
+                    <p id="providerRequirements" class="section-content">Requirements</p>
+                </div>
             </div>
-        </aside>
+            
+                            </aside>
     </div>
 
     <!-- Footer Container -->
@@ -1000,4 +1028,4 @@
 
     <script src="script.js"></script>
 </body>
-<
+</html>

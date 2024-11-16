@@ -3,15 +3,13 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 .header-container, .footer-container {
     width: 100%;
     font-family: 'Nunito Sans';
     font-weight: 400;
+    font-size: 1rem;
     background-color: none;
     color: white;
     text-align: left;
@@ -30,7 +28,6 @@ body {
     margin-left: 7%;
     font-family: 'Playfair Display';
     font-weight: 800;
-    font-size: 2rem;
 }
 
 .header-container p {
@@ -38,7 +35,6 @@ body {
     margin-left: 7%;
     margin-top: -12%;
     margin-bottom: 7%;
-    font-size: 1rem;
 }
 
 /* Full-width map container */
@@ -95,43 +91,107 @@ svg path:hover {
 /* Fixed position entity card on the right */
 .entity-card {
     position: fixed;
-    top: 20%; /* Adjust to center vertically */
-    right: 20px; /* Offset from the right side */
-    width: 300px;
-    max-width: 90%; /* Responsive width on smaller screens */
-    padding: 20px;
+    top: 15%; /* Adjusted for larger height */
+    right: 20px; /* Offset from the right */
+    width: 300px; /* Fixed width */
+    height: 550px; /* Larger height */
+    max-width: 90%; /* Responsive adjustment for smaller screens */
+    max-height: 90%; /* Ensure it remains responsive on smaller screens */
     border-radius: 10px;
     background-color: #e0e2e2;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     z-index: 10; /* Ensure it overlays the map */
-    text-align: left;
-    transition: all 0.3s ease;
-    display: block; /* Visible by default */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Prevent card overflow */
+}
+
+/* Scrollable content area */
+.entity-card .content {
+    flex-grow: 1;
+    overflow-y: auto; /* Enable scrolling within the content */
+    padding: 20px;
+}
+
+/* Fixed footer with navigation buttons */
+.entity-card .footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #d9d9d9;
+    border-top: 1px solid #c0c0c0;
+    flex-shrink: 0; /* Ensure footer doesn't shrink */
 }
 
 .entity-card h2 {
     color: #2b9643;
     font-family: 'Nunito Sans';
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     margin-top: 0;
     text-align: center;
 }
 
-.entity-card p {
-    color: #606060;
+.entity-card .address {
+    color: black;
     font-family: 'Nunito Sans';
     font-weight: 400;
-    font-size: 1rem;
-    line-height: 90%;
-    margin: 10px 0;
+    font-size: 0.9rem; /* Smaller font size */
+    text-align: center;
+    margin-top: 5px; /* Slight spacing from the name */
+    margin-bottom: 10px;
 }
 
-/* Navigation buttons inside the entity card */
+/* Subtitle styles */
+.entity-card .subtitle {
+    color: #2b9643;
+    font-family: 'Nunito Sans';
+    font-weight: 700;
+    font-size: 1rem;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+/* Section content styles */
+.entity-card .section-content {
+    color: black;
+    font-family: 'Nunito Sans';
+    font-weight: 400;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+/* Gray line separator */
+.entity-card .separator {
+    height: 1px;
+    background-color: #d3d3d3;
+    margin: 10px auto; /* Centered separator */
+    width: 80%; /* Doesn't span the full width */
+}
+
+/* Social media icons */
+.entity-card .social-icons {
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+.entity-card .social-icons a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #2b9643;
+    font-size: 1.2rem; /* Adjust icon size */
+    transition: color 0.3s;
+}
+
+.entity-card .social-icons a:hover {
+    color: #1f6447;
+}
+
+/* Navigation buttons */
 .nav-button {
     width: 100px;
     padding: 5px;
-    margin: 5px;
     font-size: 14px;
     background-color: #2d6a4f;
     color: white;
@@ -148,127 +208,21 @@ svg path:hover {
 /* Close button */
 .nav-button#closeButton {
     background-color: #ff4d4d;
-    display: none; /* Hidden by default */
 }
 
 .nav-button#closeButton:hover {
     background-color: #cc0000;
 }
 
-.img-footer{
-    width: 100%;
-    height: 10%;
-    margin-top: 1%;
-}
-
-.p-footer{
-    color: #22543d;
-    text-align: center;
-    font-size: 1rem;
-
-}
-
-/* Zoom controls positioned at the bottom left */
-.zoom-controls {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    left: 2%;
-    top: 80%;
-}
-
-.zoom-controls button {
-    width: 40px;
-    height: 40px;
-    margin: 5px 0;
-    font-size: 1.5rem;
-    background-color: #e0e2e2;
-    color: black;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.zoom-controls button:hover {
-    background-color: #22543d;
-    color: white;
-}
-
 /* Mobile adjustments */
-
-@media (max-width: 480px){
-    .img-header{
-        content: url(banner-responsive.png);
-        width: 100%;
-        height: 50%;
+@media (max-width: 480px) {
+    .entity-card {
+        width: 90%;
+        right: 5%;
     }
-
-    .header-container h1{
-        margin-top: -68%;
-        font-size: 1.5rem;
-    }
-
-    .header-container p{
-        margin-top: -47%;
-        margin-right: 14%;
-        overflow-wrap: break-word;
-        font-size: 0.9rem;
-    }
-
-    .map-container{
-        margin-top: 9%;
-    }
-    
-    .entity-card{
-        display: none;
-    }
-
-    .zoom-controls{
-        top: 70%;
-    }
-
-    .zoom-controls button{
-        width: 30px;
-        height: 30px;
-        font-size: 1rem;
-        text-align: center;
-    }
-
-    .img-footer{
-        margin-top: 10%;
-    }
-
-    .p-footer{
-        font-size: 0.5rem;
-    }
-
-    #closeButton {
-        display: none;
-    }
-
 }
 
-@media (min-width: 768px) and (max-width: 1024px){
-
-    .header-container h1{
-        margin-top: -19%;
-        margin-left: 5%;
-        font-size: 1.7rem;
-    }
-
-    .header-container p{
-        margin-left: 5%;
-        margin-top: -13%;
-        margin-right: 26%;
-        font-size: 0.9rem;
-    }
-
-    .map-container {
-        width: 75vh;
-        padding-top: 20%;
-        padding-bottom: 20%;
-    }
+@media (min-width: 768px) and (max-width: 1024px) {
     .entity-card {
         display: none; /* Hidden by default on mobile */
         width: 80%;
@@ -276,15 +230,11 @@ svg path:hover {
     }
 
     .entity-card.show {
-        display: none; /* Make visible when .show is added */
-    }
-
-    .zoom-controls{
-        top: 60%;
+        display: block; /* Make visible when .show is added */
     }
 
     #closeButton {
-        display: none; /* Show close button only on mobile */
+        display: block; /* Show close button only on mobile */
     }
 }
 
@@ -292,4 +242,74 @@ svg path:hover {
     #closeButton {
         display: none;
     }
+}
+
+/* Start Message */
+.start-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    padding: 20px;
+}
+
+.start-text {
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #2b9643;
+}
+
+/* No Organization Message */
+.no-org-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    height: 100%;
+    text-align: center;
+}
+
+.no-org-icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 15px;
+}
+
+.no-org-text {
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #2b9643;
+    margin-bottom: 15px;
+}
+
+.no-org-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-family: 'Nunito Sans', sans-serif;
+    background-color: #2d6a4f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.no-org-button:hover {
+    background-color: #22543d;
+}
+
+/* Content Section */
+.content {
+    display: none; /* Initially hidden */
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+.country.has-provider {
+    fill: #2b9643; /* Highlighted color for countries with providers */
 }
