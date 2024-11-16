@@ -2,7 +2,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const mapContainer = document.querySelector(".map-container");
     const svg = document.getElementById("interactiveMap");
     const entityCard = document.getElementById("entityCard");
-    const closeButton = document.getElementById("closeButton");
+    const startMessage = document.getElementById("startMessage");
+    const noOrgMessage = document.getElementById("noOrgMessage");
+    const cardContent = document.getElementById("cardContent");
+    const registerButton = document.getElementById("registerButton");
     const providerName = document.getElementById("providerName");
     const providerAddress = document.getElementById("providerAddress");
     const providerPhone = document.getElementById("providerPhone");
@@ -29,20 +32,15 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(response => response.json())
         .then(data => {
             providers = data;
-            filteredProviders = providers; // Initially display all
-            resetEntityCard(); // Show the default message
+            resetEntityCard(); // Show the "Start" message
         })
         .catch(error => console.error("Error loading providers:", error));
 
-    // Reset the entity card to the default state
+    // Reset the entity card to the "Start" state
     function resetEntityCard() {
-        entityCard.style.display = "block";
-        providerName.textContent = "Click or tap on a country to see its registered providers";
-        providerAddress.textContent = "";
-        providerPhone.textContent = "";
-        providerWebsite.textContent = "";
-        providerService.textContent = "";
-        providerRequirements.textContent = "";
+        startMessage.style.display = "flex";
+        noOrgMessage.style.display = "none";
+        cardContent.style.display = "none";
         prevProvider.style.display = "none";
         nextProvider.style.display = "none";
     }
@@ -54,18 +52,21 @@ document.addEventListener("DOMContentLoaded", function () {
             providerName.textContent = provider.name || "Unknown Provider";
             providerAddress.textContent = provider.address || "No address available";
             providerPhone.textContent = provider.phone || "No phone number available";
-            providerWebsite.textContent = provider.website || "No website available";
-            providerWebsite.href = provider.website.startsWith("http")
-                ? provider.website
-                : `https://${provider.website}`;
+            providerWebsite.innerHTML = `<a href="${provider.website}" target="_blank">${provider.website || "No website available"}</a>`;
             providerService.textContent = provider.service || "No service information available";
             providerRequirements.textContent = provider.requirements || "No requirements available";
 
-            // Show navigation buttons if multiple providers are available
+            startMessage.style.display = "none";
+            noOrgMessage.style.display = "none";
+            cardContent.style.display = "block";
             prevProvider.style.display = filteredProviders.length > 1 ? "inline-block" : "none";
             nextProvider.style.display = filteredProviders.length > 1 ? "inline-block" : "none";
         } else {
-            resetEntityCard();
+            startMessage.style.display = "none";
+            cardContent.style.display = "none";
+            noOrgMessage.style.display = "flex"; // Show the "No Organization" message
+            prevProvider.style.display = "none";
+            nextProvider.style.display = "none";
         }
     }
 
@@ -76,11 +77,6 @@ document.addEventListener("DOMContentLoaded", function () {
         );
         currentIndex = 0;
         displayProvider(currentIndex);
-
-        // Show the card on mobile
-        if (window.innerWidth <= 768) {
-            entityCard.classList.add("show");
-        }
     }
 
     // Add click event listeners to all countries in the SVG map
@@ -102,22 +98,20 @@ document.addEventListener("DOMContentLoaded", function () {
         displayProvider(currentIndex);
     });
 
-    // Close the entity card on mobile
-    closeButton.addEventListener("click", () => {
-        if (window.innerWidth <= 768) {
-            entityCard.classList.remove("show");
-        }
+    // Handle the registration button click
+    registerButton.addEventListener("click", () => {
+        alert("Redirecting to registration page..."); // Replace with actual redirection logic
     });
 
-    // Handle window resize events to adjust card visibility
-    window.addEventListener("resize", () => {
-        if (window.innerWidth > 768) {
-            entityCard.style.display = "block"; // Always visible on larger screens
-            closeButton.style.display = "none"; // Hide close button
-        } else {
-            entityCard.style.display = "none"; // Hidden by default on mobile
-            closeButton.style.display = "block"; // Show close button on mobile
-        }
+    // Scrolling Behavior for Entity Card
+    entityCard.addEventListener("mouseenter", () => {
+        cardContent.style.overflowY = "auto"; // Enable scrolling within the card
+        document.body.style.overflow = "hidden"; // Disable page scrolling
+    });
+
+    entityCard.addEventListener("mouseleave", () => {
+        cardContent.style.overflowY = "hidden"; // Disable scrolling within the card
+        document.body.style.overflow = "auto"; // Enable page scrolling
     });
 
     // Enable panning and zooming for the map
@@ -159,3 +153,24 @@ document.addEventListener("DOMContentLoaded", function () {
     // Ensure the card visibility is set correctly on page load
     window.dispatchEvent(new Event("resize"));
 });
+
+
+
+
+
+
+
+
+
+function highlightCountriesWithProviders() {
+    const countriesWithProviders = new Set(
+        providers.map(provider => provider.country.trim())
+    );
+
+    svg.querySelectorAll("[name]").forEach(country => {
+        const countryName = country.getAttribute("name").trim();
+        if (countriesWithProviders.has(countryName)) {
+            country.classList.add("has-provider");
+        }
+    });
+}
