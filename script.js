@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const mapContainer = document.querySelector(".map-container");
     const svg = document.getElementById("interactiveMap");
     const entityCard = document.getElementById("entityCard");
+    const closeButton = document.getElementById("closeButton");
     const startMessage = document.getElementById("startMessage");
     const noOrgMessage = document.getElementById("noOrgMessage");
     const cardContent = document.getElementById("cardContent");
@@ -94,25 +95,19 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Show the entity card
-    function showEntityCard() {
+    // Show or hide the entity card based on the screen size
+    function toggleEntityCard(show) {
         const isMobile = window.innerWidth <= 768;
-        if (isMobile) {
+        if (show) {
             entityCard.classList.add("show");
             entityCard.classList.remove("hidden");
-            closeButton.style.display = "block"; // Show close button for mobile
+            entityCard.style.display = isMobile ? "block" : "flex";
+            closeButton.style.display = isMobile ? "block" : "none";
         } else {
-            entityCard.style.display = "flex"; // Ensure visible on desktop
-        }
-    }
-
-    // Hide the entity card
-    function hideEntityCard() {
-        const isMobile = window.innerWidth <= 768;
-        if (isMobile) {
             entityCard.classList.add("hidden");
             entityCard.classList.remove("show");
-            closeButton.style.display = "none"; // Hide close button for desktop
+            entityCard.style.display = "none";
+            closeButton.style.display = "none";
         }
     }
 
@@ -121,7 +116,7 @@ document.addEventListener("DOMContentLoaded", function () {
         country.addEventListener("click", (event) => {
             const countryName = event.target.getAttribute("name");
             filterProvidersByCountry(countryName);
-            showEntityCard(); // Show the card on click
+            toggleEntityCard(true); // Show the card on click
         });
     });
 
@@ -141,96 +136,16 @@ document.addEventListener("DOMContentLoaded", function () {
         alert("Redirecting to registration page..."); // Replace with actual redirection logic
     });
 
-    // Scrolling Behavior for Entity Card
-    entityCard.addEventListener("mouseenter", () => {
-        cardContent.style.overflowY = "auto"; // Enable scrolling within the card
-        document.body.style.overflow = "hidden"; // Disable page scrolling
+    // Close button functionality
+    closeButton.addEventListener("click", () => {
+        toggleEntityCard(false);
     });
 
-    entityCard.addEventListener("mouseleave", () => {
-        cardContent.style.overflowY = "hidden"; // Disable scrolling within the card
-        document.body.style.overflow = "auto"; // Enable page scrolling
-    });
-
-    // Enable panning and zooming for the map
-    let isPanning = false;
-    let startX, startY;
-    let translateX = 0;
-    let translateY = 0;
-    let zoomLevel = 1;
-
-    svg.addEventListener("mousedown", function (event) {
-        isPanning = true;
-        startX = event.clientX - translateX;
-        startY = event.clientY - translateY;
-        svg.style.cursor = "grabbing";
-    });
-
-    document.addEventListener("mousemove", function (event) {
-        if (!isPanning) return;
-        translateX = event.clientX - startX;
-        translateY = event.clientY - startY;
-        svg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${zoomLevel})`;
-    });
-
-    document.addEventListener("mouseup", function () {
-        isPanning = false;
-        svg.style.cursor = "grab";
-    });
-
-    mapContainer.addEventListener("wheel", function (event) {
-        event.preventDefault();
-        adjustZoom(event.deltaY < 0 ? 0.1 : -0.1);
-    });
-
-    function adjustZoom(delta) {
-        zoomLevel = Math.min(Math.max(zoomLevel + delta, 0.5), 3);
-        svg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${zoomLevel})`;
-    }
-
-    // Ensure the card visibility is set correctly on page load
-    window.dispatchEvent(new Event("resize"));
-});
-
-// Mobile specific functionality
-document.addEventListener("DOMContentLoaded", function () {
-    const entityCard = document.getElementById("entityCard");
-    const closeButton = document.getElementById("closeButton");
-    const svg = document.getElementById("interactiveMap");
-
-    function showEntityCard() {
-        const isMobile = window.innerWidth <= 768;
-        if (isMobile) {
-            entityCard.classList.add("show");
-            entityCard.classList.remove("hidden");
-            closeButton.style.display = "block"; // Show close button for mobile
-        } else {
-            entityCard.style.display = "flex"; // Ensure visible on desktop
-        }
-    }
-
-    function hideEntityCard() {
-        const isMobile = window.innerWidth <= 768;
-        if (isMobile) {
-            entityCard.classList.add("hidden");
-            entityCard.classList.remove("show");
-            closeButton.style.display = "none"; // Hide close button for desktop
-        }
-    }
-
-    svg.querySelectorAll("[name]").forEach(country => {
-        country.addEventListener("click", showEntityCard);
-    });
-
-    closeButton.addEventListener("click", hideEntityCard);
-
+    // Handle window resize to update card visibility
     window.addEventListener("resize", () => {
         const isMobile = window.innerWidth <= 768;
         if (!isMobile) {
-            entityCard.style.display = "flex"; // Visible on desktop
-            entityCard.classList.remove("hidden", "show");
-        } else {
-            entityCard.style.display = "none"; // Hidden on mobile by default
+            toggleEntityCard(false);
         }
     });
 });
