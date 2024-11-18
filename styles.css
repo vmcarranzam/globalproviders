@@ -119,7 +119,7 @@ svg path:hover {
 /* Scrollable content area */
 .entity-card .content {
     flex-grow: 1;
-    overflow-y: auto; /* Enable scrolling within the content */
+    overflow-y: scroll; /* Enable scrolling within the content */
     padding: 20px;
 }
 
@@ -305,7 +305,7 @@ svg path:hover {
 .content {
     display: none; /* Initially hidden */
     flex-grow: 1;
-    overflow-y: auto;
+    overflow-y: scroll;
     padding: 20px;
 }
 
@@ -349,7 +349,7 @@ svg path:hover {
 
     .entity-card .content {
         flex-grow: 1;
-        overflow-y: auto; /* Enable scrolling within the content */
+        overflow-y: scroll; /* Enable scrolling within the content */
         padding: 20px;
     }
 
