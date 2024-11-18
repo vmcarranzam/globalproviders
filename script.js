@@ -54,7 +54,9 @@ document.addEventListener("DOMContentLoaded", function () {
             providerName.textContent = provider.name || "Unknown Provider";
             providerAddress.textContent = provider.address || "No address available";
             providerPhone.textContent = provider.phone || "No phone number available";
-            providerWebsite.innerHTML = `<a href="${provider.website}" target="_blank">${provider.website || "No website available"}</a>`;
+            providerWebsite.innerHTML = provider.website
+                ? `<a href="${provider.website}" target="_blank">${provider.website}</a>`
+                : "No website available";
             providerService.textContent = provider.service || "No service information available";
             providerRequirements.textContent = provider.requirements || "No requirements available";
 
@@ -75,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Filter providers based on the selected country
     function filterProvidersByCountry(countryName) {
         filteredProviders = providers.filter(provider =>
-            provider.country.split(", ").some(country => country.trim() === countryName)
+            provider.country.split(/,\s*/).some(country => country.trim() === countryName)
         );
         currentIndex = 0;
         displayProvider(currentIndex);
@@ -84,7 +86,9 @@ document.addEventListener("DOMContentLoaded", function () {
     // Highlight countries with providers
     function highlightCountriesWithProviders(providers) {
         const countriesWithProviders = new Set(
-            providers.map(provider => provider.country.trim())
+            providers.flatMap(provider =>
+                provider.country.split(/,\s*/).map(country => country.trim())
+            )
         );
 
         svg.querySelectorAll("[name]").forEach(country => {
@@ -148,17 +152,10 @@ document.addEventListener("DOMContentLoaded", function () {
             toggleEntityCard(false);
         }
     });
-});
 
-
-//Zoom functionality //
-
-document.addEventListener("DOMContentLoaded", function() {
-    const mapContainer = document.querySelector(".map-container");
-    const svg = document.getElementById("interactiveMap");
+    // Zoom functionality //
     const zoomInButton = document.getElementById("zoomIn");
     const zoomOutButton = document.getElementById("zoomOut");
-
     let isPanning = false;
     let startX, startY;
     let translateX = 0;
@@ -167,7 +164,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let initialDistance = null;
 
     // Zoom with wheel
-    mapContainer.addEventListener("wheel", function(event) {
+    mapContainer.addEventListener("wheel", function (event) {
         event.preventDefault();
         adjustZoom(event.deltaY < 0 ? 0.1 : -0.1);
     });
@@ -176,52 +173,60 @@ document.addEventListener("DOMContentLoaded", function() {
     zoomInButton.addEventListener("click", () => adjustZoom(0.1));
     zoomOutButton.addEventListener("click", () => adjustZoom(-0.1));
 
-    // Adjust zoom function
     function adjustZoom(delta) {
         zoomLevel = Math.min(Math.max(zoomLevel + delta, 0.5), 3);
         svg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${zoomLevel})`;
     }
 
     // Pan functionality
-    svg.addEventListener("mousedown", function(event) {
+    svg.addEventListener("mousedown", function (event) {
         isPanning = true;
         startX = event.clientX - translateX;
         startY = event.clientY - translateY;
         svg.style.cursor = "grabbing";
     });
 
-    document.addEventListener("mousemove", function(event) {
+    document.addEventListener("mousemove", function (event) {
         if (!isPanning) return;
 
         translateX = event.clientX - startX;
         translateY = event.clientY - startY;
-
-        svg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${zoomLevel})`;
+        adjustPan();
     });
 
-    document.addEventListener("mouseup", function() {
+    document.addEventListener("mouseup", function () {
         isPanning = false;
         svg.style.cursor = "grab";
     });
 
-    // Touch gesture: Pinch zoom for mobile devices
-    mapContainer.addEventListener("touchstart", function(event) {
+    function adjustPan() {
+        const maxPanX = (svg.clientWidth * (zoomLevel - 1)) / 2;
+        const maxPanY = (svg.clientHeight * (zoomLevel - 1)) / 2;
+
+        translateX = Math.max(-maxPanX, Math.min(translateX, maxPanX));
+        translateY = Math.max(-maxPanY, Math.min(translateY, maxPanY));
+
+        svg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${zoomLevel})`;
+    }
+
+    // Pinch zoom functionality
+    mapContainer.addEventListener("touchstart", function (event) {
         if (event.touches.length === 2) {
             initialDistance = getDistance(event.touches[0], event.touches[1]);
         }
     });
 
-    mapContainer.addEventListener("touchmove", function(event) {
+    mapContainer.addEventListener("touchmove", function (event) {
         if (event.touches.length === 2 && initialDistance) {
             event.preventDefault();
             const newDistance = getDistance(event.touches[0], event.touches[1]);
-            const delta = (newDistance - initialDistance) * 0.005; // Adjust sensitivity
+            const delta = (newDistance - initialDistance) * 0.002;
             adjustZoom(delta);
             initialDistance = newDistance;
         }
     });
 
-    mapContainer.addEventListener("touchend", function() {
+    mapContainer.addEventListener("touchend", function () {
         initialDistance = null;
     });
 
@@ -232,11 +237,16 @@ document.addEventListener("DOMContentLoaded", function() {
         );
     }
 
-    // Country hover event
-    document.querySelectorAll(".country").forEach(country => {
-        country.addEventListener("mouseenter", (event) => {
-            const name = event.target.getAttribute("name");
-            console.log(name);
-        });
+    // Double-tap zoom
+    let lastTap = 0;
+    mapContainer.addEventListener("touchend", function (event) {
+        const currentTime = new Date().getTime();
+        const tapLength = currentTime - lastTap;
+
+        if (tapLength < 300 && tapLength > 0) {
+            adjustZoom(0.2);
+        }
+
+        lastTap = currentTime;
     });
 });
