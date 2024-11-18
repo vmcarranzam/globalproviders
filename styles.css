@@ -520,13 +520,12 @@ svg path:hover {
 .social-icons {
     display: flex;
     justify-content: center;
-    margin-top: 10px;
 }
 
 .social-icons a {
     margin: 0 10px;
     text-decoration: none;
-    display: inline-block;
+    display: inline;
 }
 
 .social-icon {
