@@ -389,7 +389,7 @@ svg path:hover {
         width: 30px;
         height: 30px;
         font-size: 1rem;
-        text-align: center;
+        text-align: left;
     }
 
     .img-footer{
