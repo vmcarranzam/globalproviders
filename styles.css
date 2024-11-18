@@ -329,17 +329,25 @@ svg path:hover {
     }
     
     .entity-card {
-        bottom: 0;
+        bottom: 10%;
         right: 0;
         left: 5%;
         width: 100%;
         height: 70%;
-        display: contents; /* Hidden by default */
-        
+        transform: translateY(0);
+        transition: transform 0.3s ease, opacity 0.3s ease; /* Transición suave */
+        opacity: 100; /* Oculto visualmente */
+        z-index: 1000;
+        display: contents;
+    }
+
+    .entity-card h2{
+        display: none;
     }
 
     .entity-card.show {
-        transform: translateY(100%);
+        transform: translateY(1%);
+        opacity: 50;
         display: flex; /* Show when .show is added */
     }
 
@@ -354,8 +362,8 @@ svg path:hover {
     }
 
     .no-org-icon{
-        height: 25%;
-        margin-top: -10%;
+        height: 18%;
+        margin-top: -20%;
     }
 
     .no-org-button{
@@ -364,6 +372,8 @@ svg path:hover {
 
     .no-org-text{
         margin-top: -1%;
+        margin-right: 5%;
+        margin-left: 5%;
     }
 
     .zoom-controls{
@@ -414,13 +424,51 @@ svg path:hover {
         padding-bottom: 20%;
     }
     .entity-card {
-        display: none; /* Hidden by default on mobile */
-        width: 80%;
-        right: 10px;
+        bottom: 10%;
+        right: 0;
+        left: 5%;
+        width: 100%;
+        height: 70%;
+        transform: translateY(0);
+        transition: transform 0.3s ease, opacity 0.3s ease; /* Transición suave */
+        opacity: 100; /* Oculto visualmente */
+        z-index: 1000;
+        display: contents;
+    }
+
+    .entity-card h2{
+        display: none;
     }
 
     .entity-card.show {
-        display: none; /* Make visible when .show is added */
+        transform: translateY(1%);
+        opacity: 50;
+        display: flex; /* Show when .show is added */
+    }
+
+    .nav-button#closeButton{
+        margin-top: 15%;
+        cursor: pointer;
+    }
+
+    .no-org-message{
+        padding: 5%;
+        height: 70%;
+    }
+
+    .no-org-icon{
+        height: 18%;
+        margin-top: -20%;
+    }
+
+    .no-org-button{
+        margin-top: 2%;
+    }
+
+    .no-org-text{
+        margin-top: -1%;
+        margin-right: 5%;
+        margin-left: 5%;
     }
 
     .zoom-controls{
@@ -428,7 +476,7 @@ svg path:hover {
     }
 
     #closeButton {
-        display: none; /* Show close button only on mobile */
+        display: flex; /* Show close button only on mobile */
     }
 }
 
