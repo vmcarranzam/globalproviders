@@ -6,24 +6,20 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-
     overflow-x: hidden; /* Prevent horizontal scrolling */
 
 }
 
 .header-container, .footer-container {
     width: 100%;
+    height: 1%;
     font-family: 'Nunito Sans';
     font-weight: 400;
     background-color: transparent;
     color: white;
     text-align: left;
-<<<<<<< HEAD
     overflow: visible;
-    z-index: 10;
-=======
-
->>>>>>> ff8bdbf24bf58214014db76b256d4b8e26c255fb
+    z-index: 2;
 }
 
 .img-header {
@@ -31,7 +27,7 @@ body {
     position: relative;
     width: 100%;
     height: 10%;
-    margin-top: -1%;
+    margin-top: -1;
 }
 
 .header-container h1 {
@@ -49,7 +45,7 @@ body {
     margin-top: 1%;
     margin-bottom: 7%;
     font-size: 1rem;
-    z-index: 10;
+    z-index: 2;
 }
 
 /* Full-width map container */
@@ -82,22 +78,18 @@ svg path:hover {
 
 .map-container {
     position: absolute;
-    top: 50%;
+    top: 47%;
     left: 50%;
     transform: translate(-50%, -20%);
     z-index: 1;
     width: 100%;
-<<<<<<< HEAD
-    height: 99%; /* Adjust height as needed */
-=======
     height: 100%; /* Adjust height as needed */
     overflow: hidden;
->>>>>>> ff8bdbf24bf58214014db76b256d4b8e26c255fb
     display: flex;
     justify-content: center;
     align-items: center;
     outline: none;
-    margin-top: 2%;
+    margin-top: 0;
 }
 
 #interactiveMap {
@@ -127,16 +119,16 @@ svg path:hover {
 /* Fixed position entity card on the right */
 .entity-card {
     position: fixed;
-    top: 30%; /* Adjusted for larger height */
+    top: 23%; /* Adjusted for larger height */
     right: 20px; /* Offset from the right */
     width: 300px; /* Fixed width */
-    height: 550px; /* Larger height */
+    height: 65%; /* Larger height */
     max-width: 90%; /* Responsive adjustment for smaller screens */
     max-height: 90%; /* Ensure it remains responsive on smaller screens */
     border-radius: 10px;
     background-color: #e0e2e2;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    z-index: 2; /* Ensure it overlays the map */
+    z-index: 3; /* Ensure it overlays the map */
     display: flex;
     flex-direction: column;
     overflow: hidden; /* Prevent card overflow */
@@ -221,7 +213,7 @@ svg path:hover {
     padding: 5px;
     display: inline-block;
     margin-left: 35%;
-    margin-bottom: 1%;
+    margin-bottom: 1.5%;
     font-size: 0.8rem;
     background-color: #2d6a4f;
     color: white;
@@ -249,7 +241,9 @@ svg path:hover {
 .img-footer{
     width: 100%;
     height: 10%;
-    margin-top: 45%;
+    margin-top: 38%;
+    position: relative;
+    z-index: 2;
 }
 
 .p-footer{
@@ -384,8 +378,6 @@ svg path:hover {
         padding: 20px;
     }
 
-
-
     .start-text {
         display: none;
     }
@@ -486,7 +478,6 @@ svg path:hover {
         display: contents;
     }
 
-
     .entity-card .content {
         flex-grow: 1;
         overflow-y: scroll; /* Enable scrolling within the content */
@@ -548,12 +539,6 @@ svg path:hover {
         font-size: 12px;
     }
 }
-
-
-
-
-
-
 
 
 .social-icons {
