@@ -193,7 +193,7 @@ svg path:hover {
 .nav-button {
     width: 100px;
     padding: 5px;
-    display: inline;
+    display: inline-block;
     margin-left: 35%;
     margin-bottom: 1%;
     font-size: 0.8rem;
@@ -519,7 +519,7 @@ svg path:hover {
 
 .social-icons {
     display: flex;
-    justify-content: center;
+    justify-content: right;
 }
 
 .social-icons a {
