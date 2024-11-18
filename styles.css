@@ -210,7 +210,7 @@ svg path:hover {
 }
 /* Close button */
 .nav-button#closeButton {
-    background-color: #ff4d4d;
+    background-color: #1f6447;
     display: none; /* Hidden by default */
 }
 
