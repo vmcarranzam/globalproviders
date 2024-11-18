@@ -492,3 +492,41 @@ svg path:hover {
         display: none;
     }
 }
+
+/* Navigation button adjustments for mobile */
+@media (max-width: 768px) {
+    .nav-button {
+        width: 90px;
+        margin: 5px 10px;
+        font-size: 12px;
+    }
+}
+
+
+
+
+
+
+
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.social-icons a {
+    margin: 0 10px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.social-icon {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s;
+}
+
+.social-icon:hover {
+    transform: scale(1.2);
+}

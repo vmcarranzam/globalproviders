@@ -15,7 +15,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const providerCuntry = document.getElementById("providerCountry");  
     
-    
+    const facebookLink = document.getElementById("facebookLink");
+    const instagramLink = document.getElementById("instagramLink");
+
     const providerRequirements = document.getElementById("providerRequirements");
     const prevProvider = document.createElement("button");
     const nextProvider = document.createElement("button");
@@ -66,6 +68,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 : "No website available";
             providerService.textContent = provider.service || "No service information available";
             providerRequirements.textContent = provider.requirements || "No requirements available";
+
+
+            facebookLink.href = provider.facebook || "#";
+            facebookLink.style.display = provider.facebook ? "inline-block" : "none";
+
+            instagramLink.href = provider.instagram || "#";
+            instagramLink.style.display = provider.instagram ? "inline-block" : "none";
+    
 
             startMessage.style.display = "none";
             noOrgMessage.style.display = "none";
