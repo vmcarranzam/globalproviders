@@ -357,6 +357,10 @@ svg path:hover {
         cursor: pointer;
     }
 
+    .nav-button#closeButton:hover{
+        background-color: #cc0000;
+    }
+
     .no-org-message{
         padding: 5%;
         height: 70%;
@@ -424,6 +428,7 @@ svg path:hover {
         padding-top: 20%;
         padding-bottom: 20%;
     }
+
     .entity-card {
         bottom: 10%;
         right: 0;
@@ -458,8 +463,8 @@ svg path:hover {
     }
 
     .no-org-icon{
-        height: 18%;
-        margin-top: -20%;
+        height: 10%;
+        margin-top: 0%;
     }
 
     .no-org-button{
@@ -474,10 +479,6 @@ svg path:hover {
 
     .zoom-controls{
         top: 60%;
-    }
-
-    #closeButton {
-        display: flex; /* Show close button only on mobile */
     }
 }
 
