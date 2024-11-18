@@ -455,6 +455,14 @@ svg path:hover {
         display: contents;
     }
 
+
+    .entity-card .content {
+        flex-grow: 1;
+        overflow-y: scroll; /* Enable scrolling within the content */
+        padding: 20px;
+    }
+
+
     .start-text {
         display: flex;
     }
