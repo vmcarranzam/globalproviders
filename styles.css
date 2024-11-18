@@ -333,7 +333,7 @@ svg path:hover {
         right: 0;
         left: 5%;
         width: 100%;
-        height: 70%;
+        height: 90%;
         transform: translateY(0);
         transition: transform 0.3s ease, opacity 0.3s ease; /* Transición suave */
         opacity: 100; /* Oculto visualmente */
@@ -341,18 +341,19 @@ svg path:hover {
         display: contents;
     }
 
-    .entity-card h2{
+    .start-text {
         display: none;
     }
 
     .entity-card.show {
-        transform: translateY(1%);
+        transform: translateY(0);
         opacity: 50;
         display: flex; /* Show when .show is added */
+        margin-top: -18%;
     }
 
     .nav-button#closeButton{
-        margin-top: 15%;
+        margin-top: 4%;
         cursor: pointer;
     }
 
@@ -362,8 +363,8 @@ svg path:hover {
     }
 
     .no-org-icon{
-        height: 18%;
-        margin-top: -20%;
+        height: 14%;
+        margin-top: 18%;
     }
 
     .no-org-button{
@@ -436,8 +437,8 @@ svg path:hover {
         display: contents;
     }
 
-    .entity-card h2{
-        display: none;
+    .start-text {
+        display: flex;
     }
 
     .entity-card.show {
@@ -447,7 +448,7 @@ svg path:hover {
     }
 
     .nav-button#closeButton{
-        margin-top: 15%;
+        margin-top: 4%;
         cursor: pointer;
     }
 
