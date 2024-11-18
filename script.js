@@ -154,7 +154,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Handle the registration button click
     registerButton.addEventListener("click", () => {
-        alert("Redirecting to registration page..."); // Replace with actual redirection logic
+        window.open("https://forms.gle/pxKFumntW2NuYkZy9", "_blank");
     });
 
     // Close button functionality
