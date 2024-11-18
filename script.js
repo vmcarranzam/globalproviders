@@ -54,9 +54,17 @@ document.addEventListener("DOMContentLoaded", function () {
             providerName.textContent = provider.name || "Unknown Provider";
             providerAddress.textContent = provider.address || "No address available";
             providerPhone.textContent = provider.phone || "No phone number available";
+
+            providerCountry.textContent = provider.country || "No country available";
+
             providerWebsite.innerHTML = provider.website
                 ? `<a href="${provider.website}" target="_blank">${provider.website}</a>`
                 : "No website available";
+            
+            providerFacebook.innerHTML = provider.facebook
+                ? `<a href="${provider.facebook}" target="_blank">${provider.facebook}</a>`
+                : "No facebook available";
+            
             providerService.textContent = provider.service || "No service information available";
             providerRequirements.textContent = provider.requirements || "No requirements available";
 
