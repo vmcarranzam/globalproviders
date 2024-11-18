@@ -63,6 +63,16 @@ svg path:hover {
     cursor: pointer;
 }
 
+.map-background {
+    position: absolute; /* Allows it to stay in the background */
+    top: 100px; /* Adjust based on the height of your header */
+    bottom: 50px; /* Adjust based on the height of your footer */
+    left: 0;
+    right: 0;
+    z-index: 1; /* Places it behind the header and footer */
+    overflow: hidden; /* Prevents overflow beyond the body */
+}
+
 .map-container {
     width: 100%;
     height: 100%; /* Adjust height as needed */
