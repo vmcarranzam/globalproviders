@@ -95,26 +95,19 @@ svg path:hover {
 /* Fixed position entity card on the right */
 .entity-card {
     position: fixed;
-    top: 15%;
-    right: 20px;
-    width: 300px;
-    height: 550px;
-    max-width: 90%;
-    max-height: 90%;
+    top: 15%; /* Adjusted for larger height */
+    right: 20px; /* Offset from the right */
+    width: 300px; /* Fixed width */
+    height: 550px; /* Larger height */
+    max-width: 90%; /* Responsive adjustment for smaller screens */
+    max-height: 90%; /* Ensure it remains responsive on smaller screens */
     border-radius: 10px;
     background-color: #e0e2e2;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    z-index: 10;
+    z-index: 0; /* Ensure it overlays the map */
     display: flex;
     flex-direction: column;
-    overflow: hidden;
-    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-}
-
-.entity-card.hidden {
-    transform: translateY(100%);
-    opacity: 0;
-    pointer-events: none;
+    overflow: hidden; /* Prevent card overflow */
 }
 
 /* Scrollable content area */
@@ -124,21 +117,12 @@ svg path:hover {
     padding: 20px;
 }
 
-/* Fixed footer with navigation buttons */
-.entity-card .footer {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 20px;
-    background-color: #d9d9d9;
-    border-top: 1px solid #c0c0c0;
-    flex-shrink: 0; /* Ensure footer doesn't shrink */
-}
 
 .entity-card h2 {
     color: #2b9643;
     font-family: 'Nunito Sans';
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 1rem;
     margin-top: 0;
     text-align: center;
 }
@@ -147,10 +131,10 @@ svg path:hover {
     color: black;
     font-family: 'Nunito Sans';
     font-weight: 400;
-    font-size: 0.9rem; /* Smaller font size */
+    font-size: 0.8rem; /* Smaller font size */
     text-align: center;
     margin-top: 5px; /* Slight spacing from the name */
-    margin-bottom: 10px;
+    margin-bottom: 1%;
 }
 
 /* Subtitle styles */
@@ -158,9 +142,9 @@ svg path:hover {
     color: #2b9643;
     font-family: 'Nunito Sans';
     font-weight: 500;
-    font-size: 1rem;
+    font-size: 0.8rem;
     margin-top: 15px;
-    margin-bottom: 5px;
+    margin-bottom: 1%;
 }
 
 /* Section content styles */
@@ -168,9 +152,10 @@ svg path:hover {
     color: black;
     font-family: 'Nunito Sans';
     font-weight: 400;
-    font-size: 0.9rem;
-    margin-bottom: 10px;
+    font-size: 0.8rem;
+    margin-bottom: 1%;
 }
+
 /* Gray line separator */
 .entity-card .separator {
     height: 1px;
@@ -202,42 +187,42 @@ svg path:hover {
 .nav-button {
     width: 100px;
     padding: 5px;
-    font-size: 14px;
+    display: inline;
+    margin-left: 35%;
+    margin-bottom: 1%;
+    font-size: 0.8rem;
     background-color: #2d6a4f;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 12px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
 .nav-button:hover {
-    background-color: #22543d;
+    background-color: #2b9643;
 }
-
 /* Close button */
 .nav-button#closeButton {
     background-color: #ff4d4d;
-    display: none;
-    align-self: flex-end;
-    margin: 10px;
-    padding: 5px 10px;
+    display: none; /* Hidden by default */
 }
 
 .nav-button#closeButton:hover {
     background-color: #cc0000;
 }
 
-.img-footer {
+.img-footer{
     width: 100%;
     height: 10%;
     margin-top: 1%;
 }
 
-.p-footer {
+.p-footer{
     color: #22543d;
     text-align: center;
     font-size: 1rem;
+
 }
 
 /* Zoom controls positioned at the bottom left */
@@ -267,122 +252,6 @@ svg path:hover {
     color: white;
 }
 
-/* Mobile adjustments */
-@media (max-width: 768px) {
-    .img-header {
-        content: url(banner-responsive.png);
-        width: 100%;
-        height: 50%;
-    }
-
-    .header-container h1 {
-        margin-top: -68%;
-        font-size: 1.5rem;
-    }
-
-    .header-container p {
-        margin-top: -47%;
-        margin-right: 14%;
-        overflow-wrap: break-word;
-        font-size: 0.9rem;
-    }
-
-    .map-container {
-        margin-top: 9%;
-    }
-
-    .entity-card {
-        position: fixed;
-        bottom: 0;
-        right: 0;
-        left: 0;
-        width: 100%;
-        height: 50%;
-        transform: translateY(100%);
-        display: none; /* Hidden by default */
-        transition: transform 0.3s ease-in-out;
-        z-index: 10;
-
-        
-    }
-
-    .entity-card.show {
-        transform: translateY(0);
-        display: flex; /* Show when .show is added */
-    }
-
-    #closeButton {
-        display: inline-block; /* Only show in mobile */
-    }
-
-    .zoom-controls {
-        top: 70%;
-    }
-
-    .zoom-controls button {
-        width: 30px;
-        height: 30px;
-        font-size: 1rem;
-        text-align: center;
-    }
-
-    .img-footer {
-        margin-top: 10%;
-    }
-
-    .p-footer {
-        font-size: 0.5rem;
-    }
-
-    #closeButton {
-        display: none;
-    }
-}
-
-@media (min-width: 768px) and (max-width: 1024px) {
-    .header-container h1 {
-        margin-top: -19%;
-        margin-left: 5%;
-        font-size: 1.7rem;
-    }
-
-    .header-container p {
-        margin-left: 5%;
-        margin-top: -13%;
-        margin-right: 26%;
-        font-size: 0.9rem;
-    }
-
-    .map-container {
-        width: 75vh;
-        padding-top: 20%;
-        padding-bottom: 20%;
-    }
-
-    .entity-card {
-        display: none; /* Hidden by default on mobile */
-        width: 80%;
-        right: 10px;
-    }
-
-    .entity-card.show {
-        display: flex; /* Make visible when .show is added */
-    }
-
-    .zoom-controls {
-        top: 60%;
-    }
-
-    #closeButton {
-        display: flex; /* Show close button only on mobile */
-    }
-}
-
-@media (min-width: 1025px) {
-    #closeButton {
-        display: none;
-    }
-}
 /* No Organization Message */
 .no-org-message {
     display: flex;
@@ -403,16 +272,18 @@ svg path:hover {
 .no-org-text {
     font-family: 'Nunito Sans', sans-serif;
     font-weight: 600;
-    font-size: 1rem;
-    color: #2b9643;
-    margin-bottom: 15px;
+    font-size: 0.8rem;
+    color: #606060;
+    margin-bottom: 18px;
+    margin-right: 1%;
+    margin-left: 1%;
 }
 
 .no-org-button {
     padding: 10px 20px;
-    font-size: 1rem;
+    font-size: 0.8rem;
     font-family: 'Nunito Sans', sans-serif;
-    background-color: #2d6a4f;
+    background-color: #1f6447;
     color: white;
     border: none;
     border-radius: 5px;
@@ -421,7 +292,7 @@ svg path:hover {
 }
 
 .no-org-button:hover {
-    background-color: #22543d;
+    background-color: #2b9643;
 }
 
 /* Content Section */
@@ -431,50 +302,138 @@ svg path:hover {
     overflow-y: auto;
     padding: 20px;
 }
-/* Fixed footer with navigation buttons */
-.entity-card .footer {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 20px;
-    background-color: #d9d9d9;
-    border-top: 1px solid #c0c0c0;
-    flex-shrink: 0; /* Ensure footer doesn't shrink */
+
+/* Mobile adjustments */
+
+@media (max-width: 480px){
+    .img-header{
+        content: url(banner-responsive.png);
+        width: 100%;
+        height: 50%;
+    }
+
+    .header-container h1{
+        margin-top: -68%;
+        font-size: 1.5rem;
+    }
+
+    .header-container p{
+        margin-top: -47%;
+        margin-right: 14%;
+        overflow-wrap: break-word;
+        font-size: 0.9rem;
+    }
+
+    .map-container{
+        margin-top: 9%;
+    }
+    
+    .entity-card {
+        bottom: 0;
+        right: 0;
+        left: 5%;
+        width: 100%;
+        height: 70%;
+        display: contents; /* Hidden by default */
+        
+    }
+
+    .entity-card.show {
+        transform: translateY(100%);
+        display: flex; /* Show when .show is added */
+    }
+
+    .nav-button#closeButton{
+        margin-top: 15%;
+        cursor: pointer;
+    }
+
+    .no-org-message{
+        padding: 5%;
+        height: 70%;
+    }
+
+    .no-org-icon{
+        height: 25%;
+        margin-top: -10%;
+    }
+
+    .no-org-button{
+        margin-top: 2%;
+    }
+
+    .no-org-text{
+        margin-top: -1%;
+    }
+
+    .zoom-controls{
+        top: 70%;
+    }
+
+    .zoom-controls button{
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .img-footer{
+        margin-top: 10%;
+    }
+
+    .p-footer{
+        font-size: 0.5rem;
+    }
+
+    #closeButton {
+        display: none;
+        margin-top: 4%;
+        margin-bottom: 1%;
+    }
+
 }
 
-.entity-card h2 {
-    color: #2b9643;
-    font-family: 'Nunito Sans';
-    font-weight: 700;
-    font-size: 1.1rem;
-    margin-top: 0;
-    text-align: center;
+@media (min-width: 768px) and (max-width: 1024px){
+
+    .header-container h1{
+        margin-top: -19%;
+        margin-left: 5%;
+        font-size: 1.7rem;
+    }
+
+    .header-container p{
+        margin-left: 5%;
+        margin-top: -13%;
+        margin-right: 26%;
+        font-size: 0.9rem;
+    }
+
+    .map-container {
+        width: 75vh;
+        padding-top: 20%;
+        padding-bottom: 20%;
+    }
+    .entity-card {
+        display: none; /* Hidden by default on mobile */
+        width: 80%;
+        right: 10px;
+    }
+
+    .entity-card.show {
+        display: none; /* Make visible when .show is added */
+    }
+
+    .zoom-controls{
+        top: 60%;
+    }
+
+    #closeButton {
+        display: none; /* Show close button only on mobile */
+    }
 }
 
-.entity-card .address {
-    color: black;
-    font-family: 'Nunito Sans';
-    font-weight: 400;
-    font-size: 0.9rem; /* Smaller font size */
-    text-align: center;
-    margin-top: 5px; /* Slight spacing from the name */
-    margin-bottom: 10px;
-}
-
-/* Subtitle styles */
-.entity-card .subtitle {
-    color: #2b9643;
-    font-family: 'Nunito Sans';
-    font-weight: 500;
-    font-size: 1rem;
-    margin-top: 15px;
-    margin-bottom: 5px;
-}
-
-/* Section content styles */
-.entity-card .section-content {
-    color: black;
-    font-family: 'Nunito Sans';
-    font-weight: 400;
-    font-size: 0.9rem;
-    margin-bottom: 10px;
+@media (min-width: 1025px) {
+    #closeButton {
+        display: none;
+    }
 }

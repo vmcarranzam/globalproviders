@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Show or hide the entity card based on the screen size
     function toggleEntityCard(show) {
-        const isMobile = window.innerWidth <= 768;
+        const isMobile = window.innerWidth <= 480;
         if (show) {
             entityCard.classList.add("show");
             entityCard.classList.remove("hidden");
