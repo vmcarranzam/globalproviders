@@ -259,7 +259,7 @@ svg path:hover {
 
 /* Zoom controls positioned at the bottom left */
 .zoom-controls {
-    position: relative;
+    position: absolute;
     z-index: 2;
     display: flex;
     flex-direction: column;
@@ -269,8 +269,7 @@ svg path:hover {
 .zoom-controls button {
     width: 40px;
     height: 40px;
-    margin-left: -4100%;
-    margin-bottom: 30%;
+    margin-bottom: 10%;
     font-size: 1.5rem;
     background-color: #e0e2e2;
     color: black;
@@ -426,11 +425,9 @@ svg path:hover {
     .zoom-controls{
         top: auto;
         z-index: 3;
-        left: -89%;
     }
 
     .zoom-controls button{
-        margin-left: -10%;
         width: 30px;
         height: 30px;
         font-size: 12px;
@@ -483,7 +480,7 @@ svg path:hover {
         transform: translateY(0);
         transition: transform 0.3s ease, opacity 0.3s ease; /* Transición suave */
         opacity: 100; /* Oculto visualmente */
-        z-index: 1000;
+        z-index: 10;
         display: contents;
     }
 
@@ -527,14 +524,6 @@ svg path:hover {
         margin-top: -1%;
         margin-right: 5%;
         margin-left: 5%;
-    }
-
-    .zoom-controls{
-        top: 10%;
-    }
-
-    .zoom-controls button{
-        margin-left: -2400%;
     }
 
     .img-footer{
