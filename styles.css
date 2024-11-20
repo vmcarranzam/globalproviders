@@ -142,7 +142,7 @@ svg path:hover {
 
 
 .entity-card.hidden {
-    display: none !important; /* Completely hide the card */
+    display: none; /* Completely hide the card */
 }
 
 /* Scrollable content area */
