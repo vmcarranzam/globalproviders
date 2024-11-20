@@ -46,11 +46,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Reset the entity card to the "Start" state
     function resetEntityCard() {
-        startMessage.style.display = "flex";
-        noOrgMessage.style.display = "none";
-        cardContent.style.display = "none";
-        prevProvider.style.display = "none";
-        nextProvider.style.display = "none";
+        if (window.innerWidth > 768) { // Desktop view
+            entityCard.classList.add("hidden"); // Hide the card initially
+        } else {
+            startMessage.style.display = "flex"; // Mobile behavior remains the same
+            noOrgMessage.style.display = "none";
+            cardContent.style.display = "none";
+            prevProvider.style.display = "none";
+            nextProvider.style.display = "none";
+        }
     }
 
     // Display provider data for a specific index
@@ -121,28 +125,33 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Show or hide the entity card based on the screen size
     function toggleEntityCard(show) {
-        const isMobile = window.innerWidth <= 480;
-        if (show) {
+        const isMobile = window.innerWidth <= 768; // Distinguish mobile
+        if (isMobile) {
+            // Mobile behavior (unchanged)
             entityCard.classList.add("show");
             entityCard.classList.remove("hidden");
-            entityCard.style.display = isMobile ? "block" : "flex";
-            closeButton.style.display = isMobile ? "block" : "none";
+            entityCard.style.display = "flex"; // Display as flex on mobile
         } else {
-            entityCard.classList.add("hidden");
-            entityCard.classList.remove("show");
-            entityCard.style.display = "none";
-            closeButton.style.display = "none";
+            // Desktop behavior
+            if (show) {
+                entityCard.classList.remove("hidden"); // Show card on desktop
+            } else {
+                entityCard.classList.add("hidden"); // Hide card on desktop
+            }
         }
     }
-
+    
     // Add click event listeners to all countries in the SVG map
     svg.querySelectorAll("[name]").forEach(country => {
         country.addEventListener("click", (event) => {
             const countryName = event.target.getAttribute("name");
             filterProvidersByCountry(countryName);
-            toggleEntityCard(true); // Show the card on click
+            toggleEntityCard(true); // Show the card on country click (desktop and mobile)
         });
     });
+
+    resetEntityCard();
+
 
     // Navigation button functionality
     prevProvider.addEventListener("click", () => {

@@ -140,6 +140,11 @@ svg path:hover {
     overflow: hidden; /* Prevent card overflow */
 }
 
+
+.entity-card.hidden {
+    display: none; /* Completely hide the card */
+}
+
 /* Scrollable content area */
 .entity-card .content {
     flex-grow: 1;
