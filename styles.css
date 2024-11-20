@@ -61,7 +61,7 @@ svg path {
 }
 
 svg path.has-provider {
-    fill: rgb(106, 118, 185); /* Slightly darker shade for countries with organizations */
+    fill: rgb(43, 150, 67); /* Slightly darker shade for countries with organizations */
 }
 
 /* Hover effect */
