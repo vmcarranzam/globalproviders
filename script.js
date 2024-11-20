@@ -45,17 +45,20 @@ document.addEventListener("DOMContentLoaded", function () {
         .catch(error => console.error("Error loading providers:", error));
 
     // Reset the entity card to the "Start" state
+    //change
     function resetEntityCard() {
         if (window.innerWidth > 768) { // Desktop view
-            entityCard.classList.add("hidden"); // Hide the card initially
+            entityCard.style.display = "none"; // Completely hide the card
         } else {
-            startMessage.style.display = "flex"; // Mobile behavior remains the same
+            // Mobile behavior remains unchanged
+            startMessage.style.display = "flex";
             noOrgMessage.style.display = "none";
             cardContent.style.display = "none";
             prevProvider.style.display = "none";
             nextProvider.style.display = "none";
         }
     }
+    
 
     // Display provider data for a specific index
     function displayProvider(index) {
@@ -124,19 +127,18 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Show or hide the entity card based on the screen size
+    //change
     function toggleEntityCard(show) {
         const isMobile = window.innerWidth <= 768; // Distinguish mobile
         if (isMobile) {
             // Mobile behavior (unchanged)
-            entityCard.classList.add("show");
-            entityCard.classList.remove("hidden");
             entityCard.style.display = "flex"; // Display as flex on mobile
         } else {
             // Desktop behavior
             if (show) {
-                entityCard.classList.remove("hidden"); // Show card on desktop
+                entityCard.style.display = "flex"; // Show the card on desktop
             } else {
-                entityCard.classList.add("hidden"); // Hide card on desktop
+                entityCard.style.display = "none"; // Completely hide the card on desktop
             }
         }
     }
