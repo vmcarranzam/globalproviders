@@ -193,10 +193,24 @@ document.addEventListener("DOMContentLoaded", function () {
     zoomInButton.addEventListener("click", () => adjustZoom(0.1));
     zoomOutButton.addEventListener("click", () => adjustZoom(-0.1));
 
+    //change
     function adjustZoom(delta) {
-        zoomLevel = Math.min(Math.max(zoomLevel + delta, 0.5), 3);
+        const oldZoomLevel = zoomLevel;
+        zoomLevel = Math.min(Math.max(zoomLevel + delta, 0.5), 3); // Clamp zoom level
+        const zoomRatio = zoomLevel / oldZoomLevel;
+
+        // Adjust position to keep the zoom centered
+        translateX *= zoomRatio;
+        translateY *= zoomRatio;
+        updateTransform();
+    }
+
+    //change 
+    function updateTransform() {
         svg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${zoomLevel})`;
     }
+
+
 
     // Pan functionality
     svg.addEventListener("mousedown", function (event) {
@@ -206,13 +220,14 @@ document.addEventListener("DOMContentLoaded", function () {
         svg.style.cursor = "grabbing";
     });
 
-    document.addEventListener("mousemove", function (event) {
+    //change 
+    document.addEventListener("mousemove", (event) => {
         if (!isPanning) return;
-
         translateX = event.clientX - startX;
         translateY = event.clientY - startY;
-        adjustPan();
+        updateTransform();
     });
+
 
     document.addEventListener("mouseup", function () {
         isPanning = false;
@@ -229,25 +244,37 @@ document.addEventListener("DOMContentLoaded", function () {
         svg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${zoomLevel})`;
     }
 
-    // Pinch zoom functionality
-    mapContainer.addEventListener("touchstart", function (event) {
+    // change
+    mapContainer.addEventListener("touchstart", (event) => {
         if (event.touches.length === 2) {
             initialDistance = getDistance(event.touches[0], event.touches[1]);
+        } else if (event.touches.length === 1) {
+            // Handle Dragging
+            isPanning = true;
+            startX = event.touches[0].clientX - translateX;
+            startY = event.touches[0].clientY - translateY;
         }
     });
 
-    mapContainer.addEventListener("touchmove", function (event) {
+    //change
+    mapContainer.addEventListener("touchmove", (event) => {
         if (event.touches.length === 2 && initialDistance) {
             event.preventDefault();
             const newDistance = getDistance(event.touches[0], event.touches[1]);
-            const delta = (newDistance - initialDistance) * 0.002;
+            const delta = (newDistance - initialDistance) * 0.002; // Adjust sensitivity
             adjustZoom(delta);
             initialDistance = newDistance;
+        } else if (event.touches.length === 1 && isPanning) {
+            translateX = event.touches[0].clientX - startX;
+            translateY = event.touches[0].clientY - startY;
+            updateTransform();
         }
     });
 
-    mapContainer.addEventListener("touchend", function () {
+    //change
+    mapContainer.addEventListener("touchend", () => {
         initialDistance = null;
+        isPanning = false;
     });
 
     function getDistance(touch1, touch2) {
@@ -257,9 +284,9 @@ document.addEventListener("DOMContentLoaded", function () {
         );
     }
 
-    // Double-tap zoom
+    //change
     let lastTap = 0;
-    mapContainer.addEventListener("touchend", function (event) {
+    mapContainer.addEventListener("touchend", (event) => {
         const currentTime = new Date().getTime();
         const tapLength = currentTime - lastTap;
 
@@ -269,4 +296,5 @@ document.addEventListener("DOMContentLoaded", function () {
 
         lastTap = currentTime;
     });
+
 });
