@@ -60,15 +60,17 @@ svg path {
     stroke: #ffffff;
 }
 
-/* Hover effect */
-svg path:hover {
-    fill: #1f6447; /* Change color on hover */
-    cursor: pointer;
-}
-
 svg path.has-provider {
     fill: rgb(106, 118, 185); /* Slightly darker shade for countries with organizations */
 }
+
+/* Hover effect */
+svg path:hover {
+    fill: #1f6447 !important; /* Change color on hover */
+    cursor: pointer;
+}
+
+
 
 .map-background {
     position: absolute; /* Allows it to stay in the background */
