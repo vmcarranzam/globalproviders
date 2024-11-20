@@ -129,17 +129,15 @@ document.addEventListener("DOMContentLoaded", function () {
     // Show or hide the entity card based on the screen size
     //change
     function toggleEntityCard(show) {
-        const isMobile = window.innerWidth <= 768; // Distinguish mobile
-        if (isMobile) {
-            // Mobile behavior (unchanged)
-            entityCard.style.display = "flex"; // Display as flex on mobile
-        } else {
-            // Desktop behavior
-            if (show) {
-                entityCard.style.display = "flex"; // Show the card on desktop
-            } else {
-                entityCard.style.display = "none"; // Completely hide the card on desktop
+        const isMobile = window.innerWidth <= 768; // Mobile detection
+        if (show) {
+            entityCard.style.display = "flex"; // Show the entity card
+            if (isMobile) {
+                closeButton.style.display = "block"; // Show the "Back to the map" button on mobile
             }
+        } else {
+            entityCard.style.display = "none"; // Hide the entity card
+            closeButton.style.display = "none"; // Always hide the button when the card is hidden
         }
     }
     
@@ -173,7 +171,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Close button functionality
     closeButton.addEventListener("click", () => {
-        toggleEntityCard(false);
+        toggleEntityCard(false); // Hide the card
     });
 
     // Handle window resize to update card visibility
