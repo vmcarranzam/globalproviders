@@ -64,8 +64,6 @@ svg path {
 svg path:hover {
     fill: #1f6447; /* Change color on hover */
     cursor: pointer;
-    transform: scale(1.1);
-    
 }
 
 .map-background {
@@ -116,7 +114,6 @@ svg path:hover {
 .country:hover {
     fill: #1f6447; /* Hover color */
     cursor: pointer; /* Show pointer cursor */
-    transform: scale(1.1);
 }
 
 /* Fixed position entity card on the right */
