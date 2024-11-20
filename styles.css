@@ -66,6 +66,10 @@ svg path:hover {
     cursor: pointer;
 }
 
+svg path.has-provider {
+    fill: rgb(106, 118, 185); /* Slightly darker shade for countries with organizations */
+}
+
 .map-background {
     position: absolute; /* Allows it to stay in the background */
     top: 100px; /* Adjust based on the height of your header */
@@ -567,3 +571,4 @@ svg path:hover {
 .social-icon:hover {
     transform: scale(1.2);
 }
+

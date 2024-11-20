@@ -107,11 +107,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 provider.country.split(/,\s*/).map(country => country.trim())
             )
         );
-
+    
+        const svg = document.getElementById("interactiveMap");
         svg.querySelectorAll("[name]").forEach(country => {
             const countryName = country.getAttribute("name").trim();
             if (countriesWithProviders.has(countryName)) {
                 country.classList.add("has-provider");
+            } else {
+                country.classList.remove("has-provider");
             }
         });
     }
