@@ -128,20 +128,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Show or hide the entity card based on the screen size
     //change
-    function toggleEntityCard(show) {
-        const isMobile = window.innerWidth <= 768; // Distinguish mobile
-        if (isMobile) {
-            // Mobile behavior (unchanged)
-            entityCard.style.display = "flex"; // Display as flex on mobile
-        } else {
-            // Desktop behavior
-            if (show) {
-                entityCard.style.display = "flex"; // Show the card on desktop
-            } else {
-                entityCard.style.display = "none"; // Completely hide the card on desktop
-            }
-        }
-    }
+    Back to the map
     
     // Add click event listeners to all countries in the SVG map
     svg.querySelectorAll("[name]").forEach(country => {
