@@ -243,8 +243,18 @@ svg path:hover {
 }
 /* Close button */
 .nav-button#closeButton {
-    background-color: #1f6447;
     display: none; /* Hidden by default */
+    background-color: #1f6447;
+    color: white;
+    padding: 10px 20px;
+    font-size: 0.8rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    z-index: 4; /* Ensure it overlays other elements */
 }
 
 .nav-button#closeButton:hover {
@@ -557,6 +567,9 @@ svg path:hover {
     }
 }
 
+.nav-button#closeButton {
+    display: block; /* Show the button on mobile */
+}
 
 .social-icons {
     display: flex;
