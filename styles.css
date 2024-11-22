@@ -243,22 +243,25 @@ svg path:hover {
 }
 /* Close button */
 .nav-button#closeButton {
-    display: none; /* Hidden by default */
-    background-color: #1f6447;
-    color: white;
-    padding: 10px 20px;
-    font-size: 0.8rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-    z-index: 4; /* Ensure it overlays other elements */
+    display: block; /* Ensure it's visible */
+    position: absolute; /* Absolute position relative to the card */
+    top: 10px; /* Offset from the top */
+    right: 10px; /* Offset from the right */
+    padding: 0; /* Remove default padding */
+    width: 30px; /* Make it smaller for the X */
+    height: 30px;
+    font-size: 1.5rem; /* Larger font for visibility */
+    text-align: center; /* Center the X in the button */
+    line-height: 30px; /* Align the X vertically */
+    background-color: transparent; /* Transparent background */
+    border: none; /* Remove the border */
+    color: #2b9643; /* Match your theme */
+    cursor: pointer; /* Pointer cursor */
 }
 
 .nav-button#closeButton:hover {
-    background-color: #cc0000;
+    color: #cc0000; /* Change color to red on hover */
+    background-color: #f0f0f0; /* Add a subtle hover effect */
 }
 
 .img-footer{
