@@ -399,8 +399,20 @@ svg path:hover {
 
     .entity-card .content {
         flex-grow: 1;
-        overflow-y: scroll; /* Enable scrolling within the content */
+        overflow-y: auto; /* Enable vertical scrolling */
         padding: 20px;
+        max-height: calc(100% - 40px); /* Ensure it doesn't overflow the card */
+        box-sizing: border-box; /* Include padding in height calculation */
+        scrollbar-width: thin; /* For modern browsers - makes scrollbar thin */
+    }
+
+    .entity-card .content::-webkit-scrollbar-thumb {
+        background-color: #2b9643; /* Match the design theme */
+        border-radius: 4px;
+    }
+    
+    .entity-card .content::-webkit-scrollbar-track {
+        background-color: #f0f0f0;
     }
 
     .start-text {
@@ -417,6 +429,8 @@ svg path:hover {
     .nav-button#closeButton{
         margin-top: 4%;
         cursor: pointer;
+        display: none; /* Hidden by default */
+
     }
 
     .nav-button#closeButton:hover{
@@ -525,6 +539,8 @@ svg path:hover {
     .nav-button#closeButton{
         margin-top: 4%;
         cursor: pointer;
+        display: none; /* Hidden by default */
+
     }
 
     .no-org-message{
@@ -569,6 +585,7 @@ svg path:hover {
 
 .nav-button#closeButton {
     display: block; /* Show the button on mobile */
+    display: none; /* Hidden by default */
 }
 
 .social-icons {
