@@ -22,6 +22,25 @@ body {
     z-index: 2;
 }
 
+
+.footer-content p {
+    margin: 0 auto;
+    max-width: 900px; /* Limit the width for readability */
+    line-height: 1.6; /* Improve readability with spacing */
+    font-size: 0.9rem; /* Slightly smaller font size */
+    color: #1f6447; /* Match the theme color */
+
+}
+
+.footer-content h2 {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 1.5rem; /* Larger font for emphasis */
+    color: #2b9643; /* Match the theme color */
+    margin-bottom: 10px; /* Space below the header */
+    text-align: center;
+}
+
+
 .img-header {
     display: block;
     position: relative;
