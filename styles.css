@@ -1,165 +1,81 @@
-/* General styles */
+/* General body styles */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Nunito Sans', sans-serif;
     margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow-x: hidden; /* Prevent horizontal scrolling */
-
 }
 
-.header-container, .footer-container {
-    width: 100%;
-    height: 1%;
-    font-family: 'Nunito Sans';
-    font-weight: 400;
-    background-color: transparent;
-    color: white;
-    text-align: left;
-    overflow: visible;
-    z-index: 2;
-}
-
-
-.footer-content p {
-    margin: 0 auto;
-    max-width: 900px; /* Limit the width for readability */
-    line-height: 1.6; /* Improve readability with spacing */
-    font-size: 0.9rem; /* Slightly smaller font size */
-    color: #1f6447; /* Match the theme color */
-
-}
-
-.footer-content h2 {
-    font-family: 'Nunito Sans', sans-serif;
-    font-size: 1.5rem; /* Larger font for emphasis */
-    color: #2b9643; /* Match the theme color */
-    margin-bottom: 10px; /* Space below the header */
+/* Header styles */
+.header-container {
     text-align: center;
-}
-
-
-.img-header {
-    display: block;
-    position: relative;
-    width: 100%;
-    height: 10%;
-    margin-top: -1;
+    padding: 20px;
 }
 
 .header-container h1 {
-    position: relative;
-    margin-top: -15%;
-    margin-left: 7%;
-    font-family: 'Playfair Display';
-    font-weight: 800;
     font-size: 2rem;
+    color: #2d6a4f;
 }
 
 .header-container p {
-    position: relative;
-    margin-left: 7%;
-    margin-top: 1%;
-    margin-bottom: 7%;
     font-size: 1rem;
-    z-index: 2;
+    color: #555;
 }
 
-/* Full-width map container */
-svg {
-    outline: none;
-}
-
-/* Country hover and click styles */
-svg path {
-    fill: rgb(137, 205, 126); /* Default fill color for countries */
-    transition: fill 0.3s ease; /* Smooth transition */
-    stroke: #ffffff;
-}
-
-svg path.has-provider {
-    fill: rgb(43, 150, 67); /* Slightly darker shade for countries with organizations */
-}
-
-/* Hover effect */
-svg path:hover {
-    fill: #1f6447 !important; /* Change color on hover */
-    cursor: pointer;
-}
-
-
-
-.map-background {
-    position: absolute; /* Allows it to stay in the background */
-    top: 100px; /* Adjust based on the height of your header */
-    bottom: 50px; /* Adjust based on the height of your footer */
-    left: 0;
-    right: 0;
-    z-index: 1; /* Places it behind the header and footer */
-    overflow: hidden; /* Prevents overflow beyond the body */
-}
-
+/* Map styles */
 .map-container {
-    position: absolute;
-    top: 47%;
-    left: 50%;
-    transform: translate(-50%, -20%);
-    z-index: 1;
     width: 100%;
-    height: 100%; /* Adjust height as needed */
-    overflow: hidden;
+    height: 70vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    outline: none;
-    margin-top: 0;
+    margin-top: 20px;
 }
 
 #interactiveMap {
-    cursor: grab;
+    width: 90%;
+    height: auto;
+    cursor: pointer;
     transition: transform 0.3s ease;
-    transform-origin: center center;
-    width: 100%; /* Ensures map fills container width */
-    /*height: 100%;*/
-    border: none;
-    height: auto; /* Maintain aspect ratio */
-    
 }
 
-/* Country styles */
-.country {
-    fill: #2b9643; /* Default color */
-    stroke: #ffffff;
+/* SVG paths for countries */
+svg path {
+    fill: #e0e2e2;
+    stroke: #fff;
     stroke-width: 0.5;
     transition: fill 0.3s ease;
 }
 
-.country:hover {
-    fill: #1f6447; /* Hover color */
-    cursor: pointer; /* Show pointer cursor */
+svg path:hover {
+    fill: #2d6a4f; /* Dark green on hover */
+    cursor: pointer;
 }
 
-/* Fixed position entity card on the right */
+svg path.has-provider {
+    fill: #2b9643; /* Highlight countries with providers */
+}
+
+/* Entity card styles */
 .entity-card {
     position: fixed;
     top: 50%;
     left: 50%;
-    width: 400px; /* Fixed width */
-    height: auto; /* Larger height */
+    transform: translate(-50%, -50%) scale(0.8);
+    width: 400px;
+    max-width: 90%;
+    height: auto;
     padding: 20px;
-    max-width: 90%; /* Responsive adjustment for smaller screens */
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
-    background-color: #e0e2e2;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    z-index: 3; /* Ensure it overlays the map */
     display: none;
     flex-direction: column;
-    overflow: hidden; /* Prevent card overflow */
+    transition: transform 0.3s ease, opacity 0.3s ease;
     opacity: 0;
 }
-
 
 .entity-card.show {
     display: flex;
@@ -167,377 +83,41 @@ svg path:hover {
     opacity: 1;
 }
 
-/* Scrollable content area */
-.entity-card .content {
-    flex-grow: 1;
-    overflow-y: scroll; /* Enable scrolling within the content */
-    padding: 20px;
-}
-
 .entity-card h2 {
-    color: #2b9643;
-    font-family: 'Nunito Sans';
-    font-weight: 700;
+    font-size: 1.5rem;
+    color: #2d6a4f;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.entity-card p {
     font-size: 1rem;
-    margin-top: 2%;
-    margin-left: 1%;
+    color: #555;
+    margin: 5px 0;
     text-align: center;
 }
 
-.entity-card .address {
-    color: black;
-    font-family: 'Nunito Sans';
-    font-weight: 400;
-    font-size: 0.8rem; /* Smaller font size */
-    text-align: center;
-    margin-top: 5px; /* Slight spacing from the name */
-    margin-bottom: 1%;
-}
-
-/* Subtitle styles */
-.entity-card .subtitle {
-    color: #2b9643;
-    font-family: 'Nunito Sans';
-    font-weight: 500;
-    font-size: 0.8rem;
-    margin-top: 15px;
-    margin-bottom: 1%;
-}
-
-/* Section content styles */
-.entity-card .section-content {
-    color: black;
-    font-family: 'Nunito Sans';
-    font-weight: 400;
-    font-size: 0.8rem;
-    margin-bottom: 1%;
-}
-
-/* Gray line separator */
-.entity-card .separator {
-    height: 1px;
-    background-color: #d3d3d3;
-    margin: 10px auto; /* Centered separator */
-    width: 80%; /* Doesn't span the full width */
-}
-
-/* Social media icons */
-.entity-card .social-icons {
-    display: flex;
-    justify-content: center;
-    margin-top: 5px;
-}
-
-.entity-card .social-icons a {
-    margin: 0 10px;
-    text-decoration: none;
-    color: #2b9643;
-    font-size: 1.2rem; /* Adjust icon size */
-    transition: color 0.3s;
-}
-
-.entity-card .social-icons a:hover {
-    color: #1f6447;
-}
-
-/* Navigation buttons */
 .nav-button {
-    width: 100px;
-    padding: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 35%;
-    margin-bottom: 1.5%;
-    font-size: 0.8rem;
+    align-self: flex-end;
     background-color: #2d6a4f;
     color: white;
     border: none;
-    border-radius: 12px;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
-    position: relative;
-    z-index: 2;
+    padding: 10px;
+    font-size: 14px;
+    margin-top: 10px;
 }
 
 .nav-button:hover {
-    background-color: #2b9643;
-}
-/* Close button */
-.nav-button#closeButton {
-    display: block; /* Ensure it's visible */
-    position: absolute; /* Absolute position relative to the card */
-    top: 10px; /* Offset from the top */
-    right: 10px; /* Offset from the right */
-    padding: 0; /* Remove default padding */
-    width: 30px; /* Make it smaller for the X */
-    height: 30px;
-    font-size: 1.5rem; /* Larger font for visibility */
-    text-align: center; /* Center the X in the button */
-    line-height: 30px; /* Align the X vertically */
-    background-color: transparent; /* Transparent background */
-    border: none; /* Remove the border */
-    color: #2b9643; /* Match your theme */
-    cursor: pointer; /* Pointer cursor */
-}
-
-.nav-button#closeButton:hover {
-    color: #cc0000; /* Change color to red on hover */
-    background-color: #f0f0f0; /* Add a subtle hover effect */
-}
-
-.img-footer{
-    width: 100%;
-    height: 10%;
-    margin-top: 38%;
-    position: relative;
-    z-index: 2;
-}
-
-.p-footer{
-    color: #22543d;
-    text-align: center;
-    font-size: 1rem;
-    position: relative;
-    z-index: 2;
-
-}
-
-/* Zoom controls positioned at the bottom left */
-.zoom-controls {
-    position: absolute;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    left: 2%;
-}
-
-.zoom-controls button {
-    width: 40px;
-    height: 40px;
-    margin-bottom: 10%;
-    font-size: 1.5rem;
-    background-color: #e0e2e2;
-    color: black;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.zoom-controls button:hover {
     background-color: #22543d;
-    color: white;
 }
 
-/* No Organization Message */
-.no-org-message {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    height: 100%;
-    text-align: center;
-}
-
-.no-org-icon {
-    width: 60px;
-    height: 60px;
-    margin-bottom: 15px;
-}
-
-.no-org-text {
-    font-family: 'Nunito Sans', sans-serif;
-    font-weight: 600;
-    font-size: 0.8rem;
-    color: #606060;
-    margin-bottom: 18px;
-    margin-right: 1%;
-    margin-left: 1%;
-}
-
-.no-org-button {
-    padding: 10px 20px;
-    font-size: 0.8rem;
-    font-family: 'Nunito Sans', sans-serif;
-    background-color: #1f6447;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.no-org-button:hover {
-    background-color: #2b9643;
-}
-
-/* Content Section */
-.content {
-    display: none; /* Initially hidden */
-    flex-grow: 1;
-    overflow-y: scroll;
-    padding: 20px;
-}
-
-/* Mobile adjustments */
-
-@media (max-width: 768px){
-    .img-header{
-        content: url(banner-responsive.png);
-        width: 100%;
-        height: 50%;
-    }
-
-    .header-container h1{
-        margin-top: -68%;
-        font-size: 1.5rem;
-        margin-right: 10%;
-    }
-
-    .header-container p{
-        margin-top: 0;
-        margin-right: 14%;
-        overflow-wrap: break-word;
-        font-size: 0.9rem;
-    }
-
-    .map-container{
-        margin-top: -10%;
-        height: 100%;
-    }
-    
+/* Responsive adjustments */
+@media (max-width: 768px) {
     .entity-card {
-        bottom: 10%;
-        right: 0;
-        left: 5%;
-        top: 17%;
         width: 100%;
-        height: 80%;
-        transform: translateY(0);
-        transition: transform 0.3s ease, opacity 0.3s ease; /* Transición suave */
-        opacity: 100; /* Oculto visualmente */
-        z-index: 3;
-        display: contents;
-    }
-
-    .entity-card .content {
-        flex-grow: 1;
-        overflow-y: auto; /* Enable vertical scrolling */
-        padding: 20px;
-        max-height: calc(100% - 40px); /* Ensure it doesn't overflow the card */
-        box-sizing: border-box; /* Include padding in height calculation */
-        scrollbar-width: thin; /* For modern browsers - makes scrollbar thin */
-    }
-
-    .entity-card .content::-webkit-scrollbar-thumb {
-        background-color: #2b9643; /* Match the design theme */
-        border-radius: 4px;
-    }
-    
-    .entity-card .content::-webkit-scrollbar-track {
-        background-color: #f0f0f0;
-    }
-
-    .start-text {
-        display: none;
-    }
-
-    .entity-card.show {
-        transform: translateY(0);
-        opacity: 50;
-        display: flex; /* Show when .show is added */
-        margin-top: -18%;
-    }
-
-    .nav-button#closeButton{
-        margin-top: 4%;
-        cursor: pointer;
-        display: none; /* Hidden by default */
-
-    }
-
-    .nav-button#closeButton:hover{
-        background-color: #cc0000;
-    }
-
-    .no-org-message{
-        padding: 5%;
-        height: 70%;
-    }
-
-    .no-org-icon{
-        height: 12%;
-        margin-top: 18%;
-    }
-
-    .no-org-button{
-        margin-top: 2%;
-    }
-
-    .no-org-text{
-        margin-top: -1%;
-        margin-right: 5%;
-        margin-left: 5%;
-    }
-
-    .zoom-controls{
-        top: auto;
-        z-index: 3;
-    }
-
-    .zoom-controls button{
-        width: 30px;
-        height: 30px;
-        font-size: 12px;
-    }
-
-    .img-footer{
-        margin-top: 105%;
-    }
-
-    .p-footer{
-        font-size: 0.5rem;
-    }
-
-    #closeButton {
-        display: none;
-        margin-top: 4%;
-        margin-bottom: 1%;
-    }
-    .nav-button {
-        width: 90px;
-        margin: 5px 10px;
-        font-size: 12px;
+        height: auto;
+        padding: 15px;
     }
 }
-
-
-
-.nav-button#closeButton {
-    display: block; /* Show the button on mobile */
-    display: none; /* Hidden by default */
-}
-
-.social-icons {
-    display: flex;
-    justify-content: right;
-}
-
-.social-icons a {
-    margin: 0 10px;
-    text-decoration: none;
-    display: inline;
-}
-
-.social-icon {
-    width: 24px;
-    height: 24px;
-    transition: transform 0.3s;
-}
-
-.social-icon:hover {
-    transform: scale(1.2);
-}
-
