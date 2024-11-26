@@ -161,6 +161,10 @@ svg path:hover {
 
 }
 
+.entity-card.show {
+    opacity: 50;
+}
+
 
 .entity-card.hidden {
     display: none; /* Completely hide the card */
