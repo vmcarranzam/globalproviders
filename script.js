@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Reset the entity card to the "Start" state
     //change
     function resetEntityCard() {
-        startMessage.style.display = "flex";
+        startMessage.style.display = "none";
         noOrgMessage.style.display = "none";
         cardContent.style.display = "none";
         prevProvider.style.display = "none";
