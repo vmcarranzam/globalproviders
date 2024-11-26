@@ -143,6 +143,12 @@ svg path:hover {
 
 /* Fixed position entity card on the right */
 .entity-card {
+
+    opacity: 0; /* Oculto visualmente */
+
+}
+
+.entity-card.show {
     position: fixed;
     top: 23%; /* Adjusted for larger height */
     right: 20px; /* Offset from the right */
@@ -157,11 +163,6 @@ svg path:hover {
     display: flex;
     flex-direction: column;
     overflow: hidden; /* Prevent card overflow */
-    opacity: 0; /* Oculto visualmente */
-
-}
-
-.entity-card.show {
     opacity: 50;
 }
 
