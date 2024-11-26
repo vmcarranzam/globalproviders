@@ -57,7 +57,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         }
     
-    
+        resetEntityCard();
+
 
     // Display provider data for a specific index
     function displayProvider(index) {
