@@ -53,11 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
         prevProvider.style.display = "none";
         nextProvider.style.display = "none";
             // Mobile behavior remains unchanged
-            startMessage.style.display = "flex";
-            noOrgMessage.style.display = "none";
-            cardContent.style.display = "none";
-            prevProvider.style.display = "none";
-            nextProvider.style.display = "none";
+
         }
     
     
