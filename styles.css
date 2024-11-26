@@ -157,6 +157,8 @@ svg path:hover {
     display: flex;
     flex-direction: column;
     overflow: hidden; /* Prevent card overflow */
+    opacity: 100; /* Oculto visualmente */
+
 }
 
 
