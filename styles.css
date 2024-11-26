@@ -164,6 +164,18 @@ svg path:hover {
     display: none; /* Completely hide the card */
 }
 
+.entity-card {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    max-width: 90%; /* Unified for mobile and desktop */
+    height: auto;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
 /* Scrollable content area */
 .entity-card .content {
     flex-grow: 1;

@@ -47,9 +47,11 @@ document.addEventListener("DOMContentLoaded", function () {
     // Reset the entity card to the "Start" state
     //change
     function resetEntityCard() {
-        if (window.innerWidth > 768) { // Desktop view
-            entityCard.style.display = "none"; // Completely hide the card
-        } else {
+        startMessage.style.display = "flex";
+        noOrgMessage.style.display = "none";
+        cardContent.style.display = "none";
+        prevProvider.style.display = "none";
+        nextProvider.style.display = "none";
             // Mobile behavior remains unchanged
             startMessage.style.display = "flex";
             noOrgMessage.style.display = "none";
@@ -57,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
             prevProvider.style.display = "none";
             nextProvider.style.display = "none";
         }
-    }
+    
     
 
     // Display provider data for a specific index
@@ -129,12 +131,9 @@ document.addEventListener("DOMContentLoaded", function () {
     // Show or hide the entity card based on the screen size
     //change
     function toggleEntityCard(show) {
-        const isMobile = window.innerWidth <= 768; // Mobile detection
         if (show) {
             entityCard.style.display = "flex"; // Show the entity card
-            if (isMobile) {
-                closeButton.style.display = "block"; // Show the "Back to the map" button on mobile
-            }
+            closeButton.style.display = "block"; // Show the "Back to the map" button
         } else {
             entityCard.style.display = "none"; // Hide the entity card
             closeButton.style.display = "none"; // Always hide the button when the card is hidden
