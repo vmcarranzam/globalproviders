@@ -162,6 +162,8 @@ svg path:hover {
 
 .entity-card.hidden {
     display: none; /* Completely hide the card */
+    z-index: -10; /* Ensure it overlays the map */
+
 }
 
 
