@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const startMessage = document.getElementById("startMessage");
     const noOrgMessage = document.getElementById("noOrgMessage");
     const cardContent = document.getElementById("cardContent");
-    const registerButton = document.getElementById("registerButton");
+    const registerButton = document.querySelectorAll("registerButton");
     const providerName = document.getElementById("providerName");
     const providerAddress = document.getElementById("providerAddress");
     const providerPhone = document.getElementById("providerPhone");
