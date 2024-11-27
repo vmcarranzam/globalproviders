@@ -24,12 +24,11 @@ body {
 
 
 .footer-content p {
-    margin: 0 auto;
-    max-width: 900px; /* Limit the width for readability */
     line-height: 1.6; /* Improve readability with spacing */
     font-size: 0.9rem; /* Slightly smaller font size */
     color: #1f6447; /* Match the theme color */
-
+    margin: 1% 5%;
+    text-align: justify;
 }
 
 .footer-content h2 {
@@ -37,6 +36,7 @@ body {
     font-size: 1.5rem; /* Larger font for emphasis */
     color: #2b9643; /* Match the theme color */
     margin-bottom: 10px; /* Space below the header */
+    margin-top: 7%;
     text-align: center;
 }
 
@@ -301,7 +301,6 @@ svg path:hover {
     font-size: 1rem;
     position: relative;
     z-index: 2;
-
 }
 
 /* Zoom controls positioned at the bottom left */
@@ -368,6 +367,8 @@ svg path:hover {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-top: -8%;
+    z-index: 3;
 }
 
 .no-org-button:hover {
