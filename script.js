@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
             providerAddress.textContent = provider.address || "No address available";
             providerPhone.textContent = provider.phone || "No phone number available";
             
-            providerCountry.textContent = provider.country || "No country name available";
+            providerCountry.textContent = provider.countryserv || "No country name available";
             
             providerWebsite.innerHTML = provider.website
                 ? `<a href="${provider.website}" target="_blank">${provider.website}</a>`
