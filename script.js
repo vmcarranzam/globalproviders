@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const startMessage = document.getElementById("startMessage");
     const noOrgMessage = document.getElementById("noOrgMessage");
     const cardContent = document.getElementById("cardContent");
-    const registerButtons = document.querySelectorAll(".registerButton");
+    const registerButton = document.getElementById("registerButton");
     const providerName = document.getElementById("providerName");
     const providerAddress = document.getElementById("providerAddress");
     const providerPhone = document.getElementById("providerPhone");
@@ -162,10 +162,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // Handle the registration button click
-    registerButtons.forEach(button => {
-        button.addEventListener("click", () => {
-            window.open("https://forms.gle/pxKFumntW2NuYkZy9", "_blank");
-        });
+    registerButton.addEventListener("click", () => {
+        window.open("https://forms.gle/pxKFumntW2NuYkZy9", "_blank");
     });
 
     // Close button functionality
