@@ -33,7 +33,7 @@ body {
 
 .footer-content h2 {
     font-family: 'Nunito Sans', sans-serif;
-    font-size: 1.5rem; /* Larger font for emphasis */
+    font-size: 1rem; /* Larger font for emphasis */
     color: #2b9643; /* Match the theme color */
     margin-bottom: 10px; /* Space below the header */
     margin-top: 7%;
@@ -500,6 +500,10 @@ svg path:hover {
     }
 
     .p-footer{
+        font-size: 0.5rem;
+    }
+
+    .romp-info{
         font-size: 0.5rem;
     }
 
