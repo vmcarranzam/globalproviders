@@ -231,7 +231,7 @@
       "country": "Guatemala",
       "service": "Fisioterapia, Atención Protésica, Terapia Ocupacional, Rehabilitación comunitaria para personas amputadas.",
       "requirements": "-",
-      "countryserv": "Guatemala, Ecuador, USA"
+      "countryserv": "Guatemala, Ecuador"
   },
   {
       "name": "ROMP Ecuador",
@@ -244,7 +244,7 @@
       "country": "Ecuador",
       "service": "Fisioterapia, Atención Protésica, Terapia Ocupacional, para personas amputadas.",
       "requirements": "-",
-      "countryserv": "Ecuador, Guatemala, USA"
+      "countryserv": "Ecuador, Guatemala"
   },
   {
       "name": "BESTOJIS ORTHOPAEDIC AND REHABILITATION FOUNDATION",
