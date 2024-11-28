@@ -72,10 +72,10 @@
       "website": "www.katalemwacheshirehome.org",
       "facebook": "https://www.facebook.com/Katalemwa.cheshire",
       "instagram": "NIL",
-      "country": "Uganda, Kenya, Rwanda, Burundi, Tanzania, South Sudan, DRC Congo",
+      "country": "Uganda, Kenya, Rwanda, Burundi, Tanzania, South Sudan, Democratic Republic of Congo",
       "service": "Orthotics, Prosthetics, and Wheelchair Services, Donning and doffing training, physiotherapy, Placing back to Community, Community Based training/rehabilitation, follow up, feedback",
       "requirements": "Cost Sharing, must be a person living with disability,",
-      "countryserv": "Uganda, Kenya, Rwanda, Burundi, Tanzania, South Sudan, DRC Congo"
+      "countryserv": "Uganda, Kenya, Rwanda, Burundi, Tanzania, South Sudan, Democratic Republic of Congo"
   },
   {
       "name": "Lanka Fundamental Rights Organization",
@@ -189,10 +189,10 @@
       "website": "www.oadcph.org",
       "facebook": "https://web.facebook.com/oadcph.org",
       "instagram": "linkedIn: https://www.linkedin.com/in/oadcph-officiel-17157a22a",
-      "country": "BENIN, BURKINA-FASO, BURUNDI, CAMEROUN, CENTRAFRIQUE, CONGO BRAZZAVILLE, CONGO RDC, COTE D’IVOIRE, DJIBOUTI, ETHIOPIE, GABON, GHANA, GUINEE CONAKRY, GUINEE BISSAU, KENYA, MADAGASCAR, MALAWI, MALI, MAURITANIE, NAMIBIE, NIGER, NIGERIA, RWANDA, SENEGAL, SIERRA LEONNE, SOMALIE, SOMALILAND, SOUDAN, SOUDAN DU SUD, TANZANIE, TCHAD, TOGO, ZAMBIE, ZIMBABWE",
+      "country": "BENIN, BURKINA-FASO, BURUNDI, CAMEROUN, CENTRAFRIQUE, CONGO BRAZZAVILLE, Democratic Republic of Congo, COTE D’IVOIRE, DJIBOUTI, ETHIOPIE, GABON, GHANA, GUINEE CONAKRY, GUINEE BISSAU, KENYA, MADAGASCAR, MALAWI, MALI, MAURITANIE, NAMIBIE, NIGER, NIGERIA, RWANDA, SENEGAL, SIERRA LEONNE, SOMALIE, SOMALILAND, SOUDAN, SOUDAN DU SUD, TANZANIE, TCHAD, TOGO, ZAMBIE, ZIMBABWE",
       "service": "help refer vulnerable disabled people to orthopedic-fitting centers, and provide recycled orthopedic components for their care",
       "requirements": "be a vulnerable disabled person",
-      "countryserv": "BENIN, BURKINA-FASO, BURUNDI, CAMEROUN, CENTRAFRIQUE, CONGO BRAZZAVILLE, CONGO RDC, COTE D’IVOIRE, DJIBOUTI, ETHIOPIE, GABON, GHANA, GUINEE CONAKRY, GUINEE BISSAU, KENYA, MADAGASCAR, MALAWI, MALI, MAURITANIE, NAMIBIE, NIGER, NIGERIA, RWANDA, SENEGAL, SIERRA LEONNE, SOMALIE, SOMALILAND, SOUDAN, SOUDAN DU SUD, TANZANIE, TCHAD, TOGO, ZAMBIE, ZIMBABWE"
+      "countryserv": "BENIN, BURKINA-FASO, BURUNDI, CAMEROUN, CENTRAFRIQUE, CONGO BRAZZAVILLE, Democratic Republic of Congo, COTE D’IVOIRE, DJIBOUTI, ETHIOPIE, GABON, GHANA, GUINEE CONAKRY, GUINEE BISSAU, KENYA, MADAGASCAR, MALAWI, MALI, MAURITANIE, NAMIBIE, NIGER, NIGERIA, RWANDA, SENEGAL, SIERRA LEONNE, SOMALIE, SOMALILAND, SOUDAN, SOUDAN DU SUD, TANZANIE, TCHAD, TOGO, ZAMBIE, ZIMBABWE"
   },
   {
       "name": "STAND",
@@ -245,19 +245,6 @@
       "service": "Fisioterapia, Atención Protésica, Terapia Ocupacional, para personas amputadas.",
       "requirements": "-",
       "countryserv": "Ecuador, Guatemala, USA"
-  },
-  {
-      "name": "ROMP USA",
-      "address": "1474 S Acoma St, Denver, Colorado, 80223",
-      "email": "info@rompglobal.org",
-      "phone": "-",
-      "website": "https://rompglobal.org/need-a-prosthesis/ecuador.html",
-      "facebook": "https://www.facebook.com/ROMPEcuador/",
-      "instagram": "https://www.instagram.com/rompecuador/?hl=en",
-      "country": "USA",
-      "service": "Fisioterapia, Atención Protésica, Terapia Ocupacional, para personas amputadas.",
-      "requirements": "-",
-      "countryserv": "USA, Guatemala, Ecuador"
   },
   {
       "name": "BESTOJIS ORTHOPAEDIC AND REHABILITATION FOUNDATION",
