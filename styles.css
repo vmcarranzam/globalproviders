@@ -127,7 +127,8 @@ svg path:hover {
     /*height: 100%;*/
     border: none;
     height: auto; /* Maintain aspect ratio */
-    
+    transform: scale(0.6); /* Adjust initial scale for desktops */
+
 }
 
 /* Country styles */
